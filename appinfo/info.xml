@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>paper</id>
+    <name>Paper</name>
+    <summary>Turn web content into easily readable and simplified articles.</summary>
+    <description><![CDATA[Clone of Instapaper.]]></description>
+    <licence>agpl</licence>
+    <author mail="mail@andreasjacobsen.dk" >Andreas Jacobsen</author>
+    <version>0.0.1</version>
+    <namespace>Paper</namespace>
+    <category>office</category>
+    <bugs>https://github.com/andreasjacobsen93/Paper/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="12" max-version="12"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Paper</name>
+            <route>paper.page.index</route>
+        </navigation>
+    </navigations>
+</info>
