@@ -1,5 +1,5 @@
 # Paper
-Place this app in **nextcloud/apps/**
+A NextCloud app that turns web content into easily readable and simplified articles. Edit
 
 ## Building the app
 
