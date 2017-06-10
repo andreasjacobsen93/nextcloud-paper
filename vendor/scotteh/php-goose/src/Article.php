@@ -364,7 +364,7 @@ class Article {
     protected $rawResponse;
 
     /** @param \Psr\Http\Message\ResponseInterface|null $rawResponse */
-    public function setRawResponse($rawResponse) {
+    public function setRawResponse(Psr\Http\Message\ResponseInterface $rawResponse) {
         $this->rawResponse = $rawResponse;
     }
 
