@@ -10,9 +10,11 @@ style('paper', 'style');
 	</div>
 
 	<div id="app-content">
-		<div id="app-content-wrapper">
+		<div id="app-content-list">
 			<?php print_unescaped($this->inc('content/index')); ?>
 		</div>
+
+        <div id="app-content-detail"></div>
 	</div>
 </div>
 
