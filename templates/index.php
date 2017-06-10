@@ -11,10 +11,12 @@ style('paper', 'style');
 
 	<div id="app-content">
 		<div class="app-content-list">
-			<?php print_unescaped($this->inc('content/index')); ?>
+			<?php print_unescaped($this->inc('content/list')); ?>
 		</div>
 
-        <div class="app-content-detail">This is the article reader.</div>
+        <div class="app-content-detail">
+            <?php print_unescaped($this->inc('content/reader')); ?>
+        </div>
 	</div>
 </div>
 

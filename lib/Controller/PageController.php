@@ -25,7 +25,7 @@ class PageController extends Controller {
 	 * @NoCSRFRequired
 	 */
 	public function index() {
-		return new TemplateResponse('paper', 'index');  // templates/index.php
+		return new TemplateResponse('paper', 'index');  // templates/list.php
 	}
 
 }
