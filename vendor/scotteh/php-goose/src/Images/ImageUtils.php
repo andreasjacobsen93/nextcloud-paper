@@ -104,7 +104,7 @@ class ImageUtils {
                 yield $key => function($options) use ($guzzle, $url, $file) {
                     $options['sink'] = $file;
 
-                    return $guzzle->sendAsync(new \GuzzleHttp\Psr7\Request('GET', $url), $options);
+                    return (new \GuzzleHttp\Client())->sendAsync(new \GuzzleHttp\Psr7\Request('GET', $url), $options);
                 };
             }
         };
