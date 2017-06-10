@@ -14,7 +14,7 @@ style('paper', 'style');
 			<?php print_unescaped($this->inc('content/index')); ?>
 		</div>
 
-        <div class="app-content-detail"> Test </div>
+        <div class="app-content-detail">This is the article reader.</div>
 	</div>
 </div>
 

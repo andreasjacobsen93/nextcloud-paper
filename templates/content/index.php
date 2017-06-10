@@ -1,1 +1,1 @@
-<h1>Hello world</h1>
+<h1>Hello world, this is the list of articles.</h1>
