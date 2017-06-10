@@ -6,9 +6,9 @@
  * Time: 16.53
  */
 
-use Goose\Client as GooseClient;
 
-$goose = new GooseClient();
+
+$goose = new \Goose\Client();
 $article = $goose->extractContent('https://lifehacker.com/how-to-write-like-james-comey-1795924247');
 
 $title = $article->getTitle();
