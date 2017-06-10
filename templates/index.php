@@ -14,7 +14,7 @@ style('paper', 'style');
 			<?php print_unescaped($this->inc('content/index')); ?>
 		</div>
 
-        <div id="app-content-detail"></div>
+        <div id="app-content-detail"> Test </div>
 	</div>
 </div>
 
