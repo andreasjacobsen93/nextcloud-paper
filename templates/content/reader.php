@@ -1,27 +1,19 @@
+<xmp>
+# Markdown text goes in here
+
+## Chapter 1
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+et dolore magna aliqua.
+
+## Chapter 2
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+</xmp>
+
 <?php
-/**
- * Created by PhpStorm.
- * User: fsociety
- * Date: 10/06/2017
- * Time: 16.53
- */
-
-
-
-$goose = new \Goose\Client();
-$article = $goose->extractContent('https://lifehacker.com/how-to-write-like-james-comey-1795924247');
-
-$title = $article->getTitle();
-//$metaDescription = $article->getMetaDescription();
-//$metaKeywords = $article->getMetaKeywords();
-//$canonicalLink = $article->getCanonicalLink();
-//$domain = $article->getDomain();
-//$tags = $article->getTags();
-//$links = $article->getLinks();
-//$videos = $article->getVideos();
-$articleText = $article->getCleanedArticleText();
-//$entities = $article->getPopularWords();
-//$image = $article->getTopImage();
-//$allImages = $article->getAllImages();
-
-echo $articleText;
+script('paper', 'strapdown');
+?>
