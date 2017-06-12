@@ -48,7 +48,20 @@
         };
 
         View.prototype = {
+            renderContent: function () {
 
+            },
+            renderList: function () {
+
+            },
+            renderNavigation: function () {
+
+            },
+            render: function () {
+                this.renderContent();
+                this.renderList();
+                this.renderNavigation();
+            }
         };
 
         var papers = new Papers(OC.generateUrl('/apps/paper/papers'));
@@ -56,7 +69,7 @@
         papers.loadAll().done(function () {
             view.render();
         }).fail(function () {
-            alert('Could not load notes');
+            alert('Could not load papers');
         });
     });
 
