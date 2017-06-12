@@ -1,6 +1,9 @@
 <?php
+script('ownnotes', 'handlebars');
 script('paper', 'script');
+
 style('paper', 'style');
+
 ?>
 <div id="app">
 	<div id="app-navigation">
