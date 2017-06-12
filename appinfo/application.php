@@ -9,7 +9,7 @@
 class Application extends App {
 
     public function __construct(array $urlParams=array()){
-        parent::__construct('myapp', $urlParams);
+        parent::__construct('Paper', $urlParams);
 
         $container = $this->getContainer();
 
