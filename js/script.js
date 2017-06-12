@@ -7,7 +7,7 @@
         var template = Handlebars.compile(source);
 
         // this notes object holds all our notes
-        var Papers = function (baseUrl) {
+        /*var Papers = function (baseUrl) {
             this._baseUrl = baseUrl;
             this._papers = [];
             this._activePaper = undefined;
@@ -74,7 +74,7 @@
             view.render();
         //}).fail(function () {
         //    alert('Could not load papers');
-        //});
+        //});*/
     });
 
 })(OC, window, jQuery);
