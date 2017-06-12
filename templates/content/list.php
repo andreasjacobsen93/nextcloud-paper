@@ -8,6 +8,7 @@ $info = Embed::create('https://lifehacker.com/how-to-write-like-james-comey-1795
 //Get content info
 
 echo $info->title.'<br>'; //The page title
+echo '<img src="'.$info->image.'">"';
 echo $info->description.'<br>'; //The page description
 echo $info->url.'<br>'; //The canonical url
 echo $info->type.'<br>'; //The page type (link, video, image, rich)
