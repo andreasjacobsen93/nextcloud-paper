@@ -39,6 +39,13 @@
 
 /* ------------------------------------------------- */
 
+.paper-item {
+	padding: 5px;
+	border-bottom: 1px black solid;
+}
+
+/* ------------------------------------------------- */
+
 .app-content-detail {
 	margin: auto;
 	background: #fff;
