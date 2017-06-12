@@ -20,4 +20,4 @@ style('paper', 'style');
 	</div>
 </div>
 
-<script src="https://cdnjs.com/libraries/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
