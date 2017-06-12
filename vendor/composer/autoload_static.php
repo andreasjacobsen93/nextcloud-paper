@@ -14,6 +14,10 @@ class ComposerStaticInit7cbbc1ca9476929f1156a8d0a9f252d1
     );
 
     public static $prefixLengthsPsr4 = array (
+        'a' => 
+        array (
+            'andreskrey\\Readability\\' => 23,
+        ),
         'S' => 
         array (
             'Symfony\\Component\\CssSelector\\' => 30,
@@ -21,6 +25,10 @@ class ComposerStaticInit7cbbc1ca9476929f1156a8d0a9f252d1
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
+        ),
+        'L' => 
+        array (
+            'League\\HTMLToMarkdown\\' => 22,
         ),
         'G' => 
         array (
@@ -36,6 +44,10 @@ class ComposerStaticInit7cbbc1ca9476929f1156a8d0a9f252d1
     );
 
     public static $prefixDirsPsr4 = array (
+        'andreskrey\\Readability\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/andreskrey/readability.php/src',
+        ),
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
@@ -43,6 +55,10 @@ class ComposerStaticInit7cbbc1ca9476929f1156a8d0a9f252d1
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'League\\HTMLToMarkdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/html-to-markdown/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

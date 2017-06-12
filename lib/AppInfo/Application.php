@@ -6,5 +6,8 @@
  * Time: 17.34
  */
 
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../JSLikeHTMLElement.php';
 require_once __DIR__ . '/../Readability.php';
+
+use andreskrey\Readability\HTMLParser;

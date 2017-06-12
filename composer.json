@@ -1,5 +1,6 @@
 {
   "require": {
-    "scotteh/php-goose": "0.5.0"
+    "scotteh/php-goose": "0.5.0",
+    "andreskrey/readability.php": "v0.2.1"
   }
 }
