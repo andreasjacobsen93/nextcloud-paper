@@ -6,3 +6,5 @@
 <script id="myTemplate" type="text/x-jsrender">
 Name: {{:name}}
 </script>
+
+    <p id="here"></p>
