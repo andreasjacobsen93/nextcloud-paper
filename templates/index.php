@@ -1,5 +1,5 @@
 <?php
-script('ownnotes', 'handlebars');
+script('paper', 'handlebars');
 script('paper', 'script');
 
 style('paper', 'style');
