@@ -83,6 +83,7 @@ $(document).ready(function () {
 
                 self._papers.create(paper).done(function() {
                     self.render();
+                    $('#add_url').val('');
                 }).fail(function () {
                     alert('Could not add new paper');
                 });
