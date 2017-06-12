@@ -144,7 +144,12 @@ $(document).ready(function () {
         },
         renderNavigation: function () {
             var self = this;
+            var clicked = false;
             $('#add_button').click(function () {
+                if (clicked)
+                    return;
+
+                clicked = true;
                 var paper = {
                     url: $('#add_url').val()
                 };
