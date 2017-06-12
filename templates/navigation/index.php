@@ -1,10 +1,6 @@
+<script id="navigation-tpl" type="text/x-handlebars-template">
+    <li id="new-note"><a href="#">Add note</a></li>
+</script>
+
 <ul>
-	<li><a href="#">First level entry</a></li>
-	<li>
-		<a href="#">First level container</a>
-		<ul>
-			<li><a href="#">Second level entry</a></li>
-			<li><a href="#">Second level entry</a></li>
-		</ul>
-	</li>
 </ul>

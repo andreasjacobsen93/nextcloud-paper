@@ -47,6 +47,10 @@
             this._papers = papers;
         };
 
+        View.prototype = {
+
+        };
+
         var papers = new Papers(OC.generateUrl('/apps/paper/papers'));
         var view = new View(papers);
         papers.loadAll().done(function () {
