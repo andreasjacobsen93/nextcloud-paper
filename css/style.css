@@ -22,134 +22,6 @@
 
 /* ------------------------------------------------- */
 
-@include url(http://fonts.googleapis.com/css?family=Source+Sans+Pro: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
-@include url(http://fonts.googleapis.com/css?family=Merriweather: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
-
-@font-face {
-	font-family: 'Proxima Nova';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Proxima Nova Regular'), url('./writing/ProximaNova.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Proxima Nova Italic'), url('./writing/ProximaNova-Italic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	font-style: normal;
-	font-weight: bold;
-	src: local('Proxima Nova Bold'), url('./writing/ProximaNova-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Proxima Nova';
-	font-style: italic;
-	font-weight: bold;
-	src: local('Proxima Nova Bold Italic'), url('./writing/ProximaNova-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Freight Text';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Freight Text Regular'), url('./writing/FreightText.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Freight Text';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Freight Text Italic'), url('./writing/FreightText-Italic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Freight Text';
-	font-style: normal;
-	font-weight: bold;
-	src: local('Freight Text Bold'), url('./writing/FreightText-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Freight Text';
-	font-style: italic;
-	font-weight: bold;
-	src: local('Freight Text Bold Italic'), url('./writing/FreightText-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Charter';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Charter Regular'), url('./writing/Charter.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Charter';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Charter Italic'), url('./writing/Charter-Italic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Charter';
-	font-style: normal;
-	font-weight: bold;
-	src: local('Charter Bold'), url('./writing/Charter-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Charter';
-	font-style: italic;
-	font-weight: bold;
-	src: local('Charter Bold Italic'), url('./writing/Charter-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Kievit';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Kievit Book'), url('./writing/Kievit.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Kievit';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Kievit Book Italic'), url('./writing/Kievit-Italic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Kievit';
-	font-style: normal;
-	font-weight: bold;
-	src: local('Kievit Bold'), url('./writing/Kievit-Bold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Tiempos';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Tiempos Text Regular'), url('./writing/TiemposText-Regular.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Tiempos';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Tiempos Headline Regular Italic'), url('./writing/TiemposHeadline-RegularItalic.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Tiempos';
-	font-weight: bold;
-	src: local('Tiempos Text Bold'), url('./writing/TiemposText-Bold.woff') format('woff');
-}
-
 .app-content-detail {
 	margin: auto;
 	background: #fff;
@@ -167,7 +39,7 @@
 -------------------------------------------------------- */
 .app-content-detail,
 .app-content-detail p {
-	font-family: /*"Tiempos", "Merriweather", "Freight Text", */Palatino, Times, serif !important;
+	font-family: "Tiempos", "Merriweather", "Freight Text", Palatino, Times, serif !important;
 	line-height: 1.58;
 	letter-spacing: -0.003em;
 	color: rgba(0, 0, 0, .8);
@@ -189,7 +61,7 @@
 .app-content-detail h4,
 .app-content-detail h5,
 .app-content-detail h6 {
-	font-family: /*"Tiempos", "Kievit", "Proxima Nova", "Source Sans Pro", "Helvetica Neue", */Helvetica, Arial, sans-serif;
+	font-family: "Tiempos", "Kievit", "Proxima Nova", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 700 !important;
 	font-style: normal;
 	line-height: 1.15;
