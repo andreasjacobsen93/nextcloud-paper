@@ -78,8 +78,9 @@ $(document).ready(function () {
             var html = tmpl.render(papers);
             $("#paper-list").find("ul").html(html);
 
-            $('.paper-item').click(function () {
-                var id = parseInt($(this).data('id'), 10);
+            $('.paper-item > .paper-item-title').click(function () {
+                var id = parseInt($(this).parent().data('id'), 10);
+                alert(id);
                 self._papers.load(id);
                 self.render();
             });
