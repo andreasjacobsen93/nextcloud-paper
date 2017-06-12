@@ -56,22 +56,22 @@
             },
             renderNavigation: function () {
                 var source = $('#navigation-tpl').html();
-                var template = Handlebars.compile(source);
+                Handlebars.compile(source);
             },
             render: function () {
-                this.renderContent();
-                this.renderList();
+                //this.renderContent();
+                //this.renderList();
                 this.renderNavigation();
             }
         };
 
         var papers = new Papers(OC.generateUrl('/apps/paper/papers'));
         var view = new View(papers);
-        papers.loadAll().done(function () {
+        //papers.loadAll().done(function () {
             view.render();
-        }).fail(function () {
-            alert('Could not load papers');
-        });
+        //}).fail(function () {
+        //    alert('Could not load papers');
+        //});
     });
 
 })(OC, window, jQuery);
