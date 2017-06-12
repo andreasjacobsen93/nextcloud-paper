@@ -14,6 +14,3 @@ namespace OCA\Paper\AppInfo;
 
 require_once '/apps/paper/lib/JSLikeHTMLElement.php';
 require_once '/apps/paper/lib/Readability.php';
-
-use \OCA\Paper\JSLikeHTMLElement;
-use \OCA\Paper\Readability;
