@@ -1,7 +1,7 @@
 var source = $('#navigation-template').html();
 alert(source);
 var template = Handlebars.compile(source);
-
+/*
 (function (OC, window, $, undefined) {
     'use strict';
 
@@ -75,7 +75,8 @@ var template = Handlebars.compile(source);
             view.render();
         //}).fail(function () {
         //    alert('Could not load papers');
-        //});*/
+        //});
     });
-
+ *//*
 })(OC, window, jQuery);
+*/
