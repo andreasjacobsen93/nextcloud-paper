@@ -55,10 +55,10 @@ class PaperService
     public function create($url, $userid) {
         $note = new Note();
 
-        $info = Embed::create('https://lifehacker.com/how-to-write-like-james-comey-1795924247');
+        $info = Embed::create($url);
 
         $doc = new Readability();
-        $doc->input('https://www.gnu.org/software/gnuzilla/');
+        $doc->input($url);
         $doc->init();
 
         $title = $doc->articleTitle->innerHTML;
