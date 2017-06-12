@@ -83,8 +83,8 @@ $(document).ready(function () {
             $('.paper-item > .paper-item-title').click(function () {
                 var id = parseInt($(this).parent().data('id'), 10);
                 self._papers.load(id);
-                self.render();
                 alert(self._papers.getActive().toJSON());
+                self.render();
             });
         },
         renderNavigation: function () {
