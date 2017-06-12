@@ -50,7 +50,7 @@ $(document).ready(function () {
                 data: JSON.stringify(paper)
             }).done(function (paper) {
                 self._papers.push(paper);
-                self._activeNote = paper;
+                self._activePaper = paper;
                 self.load(paper.id);
                 deferred.resolve();
             }).fail(function () {
