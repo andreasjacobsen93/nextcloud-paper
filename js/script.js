@@ -44,7 +44,7 @@ $(document).ready(function () {
                     delete this._activePaper;
                 }
 
-                this._notes.splice(index, 1);
+                this._papers.splice(index, 1);
 
                 $.ajax({
                     url: this._baseUrl + '/' + id,
