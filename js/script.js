@@ -1,10 +1,10 @@
+var source = $('#navigation-tpl').html();
+Handlebars.compile(source);
+
 (function (OC, window, $, undefined) {
     'use strict';
 
     $(document).ready(function () {
-
-        var source = $('#navigation-tpl').html();
-        var template = Handlebars.compile(source);
 
         // this notes object holds all our notes
         /*var Papers = function (baseUrl) {
