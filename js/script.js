@@ -1,3 +1,5 @@
+(function (OC, window, $, undefined) {
+    'use strict';
 
 $(document).ready(function () {
 
@@ -65,10 +67,12 @@ $(document).ready(function () {
     };
 
     var papers = new Papers(OC.generateUrl('/apps/paper/papers'));
-    var view = new View(papers);
+    //var view = new View(papers);
     papers.loadAll().done(function () {
-        view.render();
+        //view.render();
     }).fail(function () {
         alert('Could not load papers');
     });
 });
+
+})(OC, window, jQuery);
