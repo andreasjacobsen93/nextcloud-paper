@@ -29,12 +29,13 @@
 #add_url {
 	width: 100%;
 	height: 35px;
-	margin-top: 5px;
+	margin: 5px 5px 0 5px;
 }
 
 #add_button {
 	width: 100%;
 	height: 30px;
+	margin: 0 5px 0 5px;
 }
 
 /* ------------------------------------------------- */
@@ -42,6 +43,10 @@
 .paper-item {
 	padding: 5px;
 	border-bottom: 1px #eee solid;
+}
+
+.paper-item:hover {
+	background-color: #eee;
 }
 
 .paper-item-info {
