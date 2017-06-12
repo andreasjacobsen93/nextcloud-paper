@@ -80,9 +80,9 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(paper)
             }).done(function (paper) {
-                self.loadAll();
                 self._papers.push(paper);
                 self._activePaper = paper;
+                self.loadAll();
                 deferred.resolve();
             }).fail(function () {
                 deferred.reject();
