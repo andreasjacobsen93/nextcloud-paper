@@ -63,7 +63,7 @@ class Application extends App {
          */
         $container->registerService('PaperMapper', function($c){
             return new PaperMapper(
-                $c->query('ServerContainer')->getDb()
+                $c->query('ServerContainer')->getDatabaseConnection()
             );
         });
     }
