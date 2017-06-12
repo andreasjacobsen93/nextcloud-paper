@@ -69,6 +69,7 @@ $(document).ready(function () {
         renderContent: function () {
             var tmpl = $.templates("#content-template");
             var paper = { paper: this._papers.getActive() };
+            alert(this._papers.getActive());
             var html = tmpl.render(paper);
             $("#paper-content").html(html);
         },
