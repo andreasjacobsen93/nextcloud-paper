@@ -3,7 +3,7 @@
 use Embed\Embed;
 
 //Load any url:
-$info = Embed::create('https://www.gnu.org/software/gnuzilla/');
+$info = Embed::create('https://lifehacker.com/how-to-write-like-james-comey-1795924247');
 
 //Get content info
 
@@ -18,7 +18,6 @@ echo $info->authorUrl.'<br>'; //The author url
 
 echo $info->providerName.'<br>'; //The provider name of the page (Youtube, Twitter, Instagram, etc)
 echo $info->providerUrl.'<br>'; //The provider url
-echo $info->providerIcons.'<br>'; //All provider icons found in the page
 echo $info->providerIcon.'<br>'; //The icon choosen as main icon
 
 echo $info->publishedDate.'<br>'; //The published date of the resource
