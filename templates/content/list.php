@@ -1,8 +1,10 @@
 <?php
 
-$readability = new andreskrey\Readability\HTMLParser();
-$html = file_get_contents('https://www.gnu.org/software/gnuzilla/');
-$result = $readability->parse($html);
+$doc = new Readability();
+$doc->input('https://www.gnu.org/software/gnuzilla/');
+$doc->init();
 
-echo $result['article'];
-?>
+//$content = $doc->getContent();
+
+echo '<h1>'.$doc->articleTitle->innerHTML.'</h1>';
+echo $doc->articleContent->innerHTML;
