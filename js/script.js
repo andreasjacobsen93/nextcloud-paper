@@ -49,13 +49,14 @@
 
         View.prototype = {
             renderContent: function () {
-
             },
             renderList: function () {
-
+                var source = $('#list-tpl').html();
+                var template = Handlebars.compile(source);
             },
             renderNavigation: function () {
-
+                var source = $('#navigation-tpl').html();
+                var template = Handlebars.compile(source);
             },
             render: function () {
                 this.renderContent();
