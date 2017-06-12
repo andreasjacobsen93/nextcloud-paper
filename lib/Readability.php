@@ -12,34 +12,10 @@
 * Requires: PHP5
 * Date: 2011-07-22
 *
-* Differences between the PHP port and the original
-* ------------------------------------------------------
-* Arc90's Readability is designed to run in the browser. It works on the DOM
-* tree (the parsed HTML) after the page's CSS styles have been applied and
-* Javascript code executed. This PHP port does not run inside a browser.
-* We use PHP's ability to parse HTML to build our DOM tree, but we cannot
-* rely on CSS or Javascript support. As such, the results will not always
-* match Arc90's Readability. (For example, if a web page contains CSS style
-* rules or Javascript code which hide certain HTML elements from display,
-* Arc90's Readability will dismiss those from consideration but our PHP port,
-* unable to understand CSS or Javascript, will not know any better.)
-*
-* Another significant difference is that the aim of Arc90's Readability is
-* to re-present the main content block of a given web page so users can
-* read it more easily in their browsers. Correct identification, clean up,
-* and separation of the content block is only a part of this process.
-* This PHP port is only concerned with this part, it does not include code
-* that relates to presentation in the browser - Arc90 already do
-* that extremely well, and for PDF output there's FiveFilters.org's
-* PDF Newspaper: http://fivefilters.org/pdf-newspaper/.
-*
-* Finally, this class contains methods that might be useful for developers
-* working on HTML document fragments. So without deviating too much from
-* the original code (which I don't want to do because it makes debugging
-* and updating more difficult), I've tried to make it a little more
-* developer friendly. You should be able to use the methods here on
-* existing DOMElement objects without passing an entire HTML document to
-* be parsed.
+* Modified by: Andreas Jacobsen
+* Date: 2017-06-12
+* Added conversion from relative urls to absolute urls.
+* Added conversion from relative imgs to absolute imgs.
 */
 
 // This class allows us to do JavaScript like assignements to innerHTML
@@ -58,6 +34,7 @@
 // $r->init();
 // echo $r->articleContent->innerHTML;
 
+use \OCA\Paper\JSLikeHTMLElement;
 
 class Readability
 {
@@ -86,6 +63,7 @@ class Readability
 		'divToPElements' => '/<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i',
 		'replaceBrs' => '/(<br[^>]*>[ \n\r\t]*){2,}/i',
 		'replaceFonts' => '/<(\/?)font[^>]*>/i',
+		'replaceLinks' => '/<a href="([\/\\\.a-z0-9]+)"/i',
 		// 'trimRe' => '/^\s+|\s+$/g', // PHP has trim()
 		'normalize' => '/\s{2,}/',
 		'killBreaks' => '/(<br\s*\/?>(\s|&nbsp;?)*){1,}/',
@@ -109,27 +87,27 @@ class Readability
 	}
 
 	function _get_curl($url) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $data = curl_exec($ch);
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    $data = curl_exec($ch);
 
-    if ($data == false)
-    {
-      $error = curl_error($ch);
+	    if ($data == false)
+	    {
+	      $error = curl_error($ch);
+	    }
+
+	    curl_close($ch);
+
+	    if ($data == false)
+	    {
+		 		return false;
+	    }
+
+	    return $data;
     }
-
-    curl_close($ch);
-
-    if ($data == false)
-    {
-	 		return false;
-    }
-
-    return $data;
-  }
 
 	function input($url=null)
 	{
@@ -147,12 +125,15 @@ class Readability
 		// }
 		// $html = html_entity_decode($html,null,$charset);
 
+		preg_match($this->regexps['replaceLinks'], $html, $match);
+		if (is)
+
 		unset($this->dom);
-    unset($this->articleTitle);
+    	unset($this->articleTitle);
 		unset($this->articleContent);
 		$this->url = null;
 		$this->body = null;
-    $this->bodyCache = null;
+    	$this->bodyCache = null;
 		$this->success = false;
 		$this->flags = 7;
 
@@ -592,6 +573,20 @@ class Readability
 			}
 
 			if ($tagName == 'P' || $tagName == 'TD' || $tagName == 'PRE') {
+				$nodesToScore[] = $node;
+			}
+
+			// Added 2017-06-12 by Andreas Jacobsen
+			if ($tagName == 'A') {
+				$node->setAttribute('href', $this->rel2abs(
+    				$node->getAttribute('href'), $this->url));
+				$nodesToScore[] = $node;
+			}
+
+			// Added 2017-06-12 by Andreas Jacobsen
+			if ($tagName == 'IMG') {
+				$node->setAttribute('src', $this->rel2abs(
+    				$node->getAttribute('src'), $this->url));
 				$nodesToScore[] = $node;
 			}
 
@@ -1130,5 +1125,32 @@ class Readability
 	public function removeFlag($flag) {
 		$this->flags = $this->flags & ~$flag;
 	}
+
+	function rel2abs($rel, $base)
+	 {
+		 if(strpos($rel,"//")===0)
+		 {
+		 return "http:".$rel;
+		 }
+		 /* return if  already absolute URL */
+		 if  (parse_url($rel, PHP_URL_SCHEME) != '') return $rel;
+		 /* queries and  anchors */
+		 if ($rel[0]=='#'  || $rel[0]=='?') return $base.$rel;
+		 /* parse base URL  and convert to local variables:
+		 $scheme, $host,  $path */
+		 extract(parse_url($base));
+		 /* remove  non-directory element from path */
+		 $path = preg_replace('#/[^/]*$#',  '', $path);
+		 /* destroy path if  relative url points to root */
+		 if ($rel[0] ==  '/') $path = '';
+		 /* dirty absolute  URL */
+		 $abs =  "$host$path/$rel";
+		 /* replace '//' or  '/./' or '/foo/../' with '/' */
+		 $re =  array('#(/.?/)#', '#/(?!..)[^/]+/../#');
+		 for($n=1; $n>0;  $abs=preg_replace($re, '/', $abs, -1, $n)) {}
+		 /* absolute URL is  ready! */
+		 return  $scheme.'://'.$abs;
+	 }
+
 }
 ?>
