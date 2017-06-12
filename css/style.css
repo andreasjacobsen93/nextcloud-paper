@@ -24,12 +24,12 @@
 
 #add_form {
 	padding: 5px;
-	padding-top: 10px;
 }
 
 #add_url {
 	width: 100%;
 	height: 35px;
+	margin-top: 5px;
 }
 
 #add_button {
