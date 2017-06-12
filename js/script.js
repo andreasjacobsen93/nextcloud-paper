@@ -67,6 +67,10 @@ $(document).ready(function () {
 
     View.prototype = {
         renderContent: function () {
+            var tmpl = $.templates("#content-template");
+            var paper = {papers: this._papers.getActive()};
+            var html = tmpl.render(paper);
+            $("#paper-content").html(html);
         },
         renderList: function () {
             var tmpl = $.templates("#list-template");
