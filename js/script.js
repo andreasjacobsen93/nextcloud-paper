@@ -77,6 +77,12 @@ $(document).ready(function () {
             var papers = {papers: this._papers.getAll()};
             var html = tmpl.render(papers);
             $("#paper-list").find("ul").html(html);
+
+            $('#app-content-list').find('.paper-item').click(function () {
+                var id = parseInt($(this).parent().data('id'), 10);
+                self._papers.load(id);
+                self.render();
+            });
         },
         renderNavigation: function () {
             var self = this;
