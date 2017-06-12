@@ -16,7 +16,7 @@ $(document).ready(function () {
             this._papers.forEach(function (paper) {
                 if (paper.id === id) {
                     paper.active = true;
-                    self._activeNote = paper;
+                    self._activePaper = paper;
                 } else {
                     paper.active = false;
                 }
