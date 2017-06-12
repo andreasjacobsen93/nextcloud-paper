@@ -3,7 +3,7 @@
 use Embed\Embed;
 
 //Load any url:
-$info = Embed::create('https://www.youtube.com/watch?v=PP1xn5wHtxE');
+$info = Embed::create('https://www.gnu.org/software/gnuzilla/');
 
 //Get content info
 
