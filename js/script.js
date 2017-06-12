@@ -3,11 +3,6 @@
 
 $(document).ready(function () {
 
-    //var tmpl = $.templates("#myTemplate");
-    //var person = {name: "Jim"};
-    //var html = tmpl.render(person);
-    //$("#here").html(html);
-
     // this notes object holds all our notes
     var Papers = function (baseUrl) {
         this._baseUrl = baseUrl;
@@ -56,6 +51,10 @@ $(document).ready(function () {
         renderContent: function () {
         },
         renderList: function () {
+            var tmpl = $.templates("#list-template");
+            var papers = {notes: this._papers.getAll()};
+            var html = tmpl.render(papers);
+            $("#paper-list").find("ul").html(html);
         },
         renderNavigation: function () {
         },
