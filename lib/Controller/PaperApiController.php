@@ -3,17 +3,19 @@
  * Created by PhpStorm.
  * User: fsociety
  * Date: 12/06/2017
- * Time: 15.39
+ * Time: 16.16
  */
+
 namespace OCA\Paper\Controller;
 
 use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Controller;
+use OCP\AppFramework\ApiController;
 
 use OCA\Paper\Service\NoteService;
 
-class PaperController extends Controller {
+
+class PaperApiController extends ApiController {
 
     private $service;
     private $userId;
@@ -28,6 +30,8 @@ class PaperController extends Controller {
     }
 
     /**
+     * @CORS
+     * @NoCSRFRequired
      * @NoAdminRequired
      */
     public function index() {
@@ -35,6 +39,8 @@ class PaperController extends Controller {
     }
 
     /**
+     * @CORS
+     * @NoCSRFRequired
      * @NoAdminRequired
      *
      * @param int $id
@@ -46,6 +52,8 @@ class PaperController extends Controller {
     }
 
     /**
+     * @CORS
+     * @NoCSRFRequired
      * @NoAdminRequired
      *
      * @param string $title
@@ -56,6 +64,8 @@ class PaperController extends Controller {
     }
 
     /**
+     * @CORS
+     * @NoCSRFRequired
      * @NoAdminRequired
      *
      * @param int $id
@@ -69,6 +79,8 @@ class PaperController extends Controller {
     }
 
     /**
+     * @CORS
+     * @NoCSRFRequired
      * @NoAdminRequired
      *
      * @param int $id
@@ -78,4 +90,5 @@ class PaperController extends Controller {
             return $this->service->delete($id, $this->userId);
         });
     }
+
 }

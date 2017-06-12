@@ -10,9 +10,12 @@
  */
 return [
     'resources' => [
-        'paper' => ['url' => '/papers']
+        'paper' => ['url' => '/papers'],
+        'paper_api' => ['url' => '/api/0.1/papers']
     ],
     'routes' => [
-	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET']
+	    ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+        ['name' => 'paper_api#preflighted_cors', 'url' => '/api/0.1/{path}',
+            'verb' => 'OPTIONS', 'requirements' => ['path' => '.+']]
     ]
 ];

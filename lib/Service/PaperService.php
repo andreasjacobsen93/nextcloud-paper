@@ -16,6 +16,8 @@ use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 use OCA\Paper\Db\Note;
 use OCA\Paper\Db\NoteMapper;
 
+use Embed\Embed;
+
 class PaperService
 {
     private $mapper;
@@ -50,18 +52,28 @@ class PaperService
         }
     }
 
-    public function create($title, $description, $site, $link, $author, $published, $readtime, $content, $image, $datetime, $userid) {
+    public function create($url, $userid) {
         $note = new Note();
+
+        $info = Embed::create('https://lifehacker.com/how-to-write-like-james-comey-1795924247');
+
+        $doc = new Readability();
+        $doc->input('https://www.gnu.org/software/gnuzilla/');
+        $doc->init();
+
+        $title = $doc->articleTitle->innerHTML;
+        $content = $doc->articleContent->innerHTML;
+
         $note->setTitle($title);
-        $note->setDescription($description);
-        $note->setSite($site);
-        $note->setLink($link);
-        $note->setAuthor($author);
-        $note->setPublished($published);
-        $note->setReadtime($readtime);
+        $note->setDescription($info->description);
+        $note->setSite($info->providerUrl);
+        $note->setLink($info->url);
+        $note->setAuthor($info->authorName);
+        $note->setPublished($info->publishedDate);
+        $note->setReadtime('');
         $note->setContent($content);
-        $note->setImage($image);
-        $note->setDatetime($datetime);
+        $note->setImage($info->image);
+        $note->setDatetime('');
         $note->setUserId($userid);
         return $this->mapper->insert($note);
     }
