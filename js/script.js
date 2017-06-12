@@ -28,6 +28,37 @@ $(document).ready(function () {
         getAll: function () {
             return this._papers;
         },
+        removeActive: function () {
+            var index;
+            var deferred = $.Deferred();
+            var id = this._activePaper.id;
+            this._papers.forEach(function (paper, counter) {
+                if (paper.id === id) {
+                    index = counter;
+                }
+            });
+
+            if (index !== undefined) {
+                // delete cached active note if necessary
+                if (this._activePaper === this._papers[index]) {
+                    delete this._activePaper;
+                }
+
+                this._notes.splice(index, 1);
+
+                $.ajax({
+                    url: this._baseUrl + '/' + id,
+                    method: 'DELETE'
+                }).done(function () {
+                    deferred.resolve();
+                }).fail(function () {
+                    deferred.reject();
+                });
+            } else {
+                deferred.reject();
+            }
+            return deferred.promise();
+        },
         loadAll: function () {
             var deferred = $.Deferred();
             var self = this;
@@ -57,6 +88,18 @@ $(document).ready(function () {
                 deferred.reject();
             });
             return deferred.promise();
+        },
+        updateActive: function (title, description) {
+            var paper = this.getActive();
+            paper.title = title;
+            paper.description = description;
+
+            return $.ajax({
+                url: this._baseUrl + '/' + paper.id,
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(paper)
+            });
         }
     };
 
@@ -74,6 +117,14 @@ $(document).ready(function () {
             var paper = { content: this._papers.getActive().content };
             var html = tmpl.render(paper);
             $("#paper-reader").html(html);
+
+            $("#paper-delete").click(function () {
+                self._papers.removeActive().done(function () {
+                    self.render();
+                }).fail(function () {
+                    alert('Could not delete note, not found');
+                });
+            });
         },
         renderList: function () {
             var tmpl = $.templates("#list-template");
@@ -96,8 +147,8 @@ $(document).ready(function () {
                 };
 
                 self._papers.create(paper).done(function() {
-                    self.render();
                     $('#add_url').val('');
+                    self.render();
                 }).fail(function () {
                     alert('Could not add new paper');
                 });
