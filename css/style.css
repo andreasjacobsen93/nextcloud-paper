@@ -28,11 +28,12 @@
 
 #add_url {
 	width: 100%;
+	height: 50px;
 }
 
 #add_button {
 	width: 100%;
-	height: 20px;
+	height: 50px;
 }
 
 /* ------------------------------------------------- */
