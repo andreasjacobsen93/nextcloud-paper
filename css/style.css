@@ -64,6 +64,10 @@
 	cursor: pointer;
 }
 
+.paper-item-description {
+	cursor: pointer;
+}
+
 /* ------------------------------------------------- */
 
 .app-content-detail {
