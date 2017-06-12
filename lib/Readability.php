@@ -43,7 +43,7 @@
 */
 
 // This class allows us to do JavaScript like assignements to innerHTML
-require_once(dirname(__FILE__).'/JSLikeHTMLElement.php');
+// require_once(dirname(__FILE__).'/JSLikeHTMLElement.php');
 
 // Alternative usage (for testing only!)
 // uncomment the lines below and call Readability.php in your browser
