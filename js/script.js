@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-    var source = $('#navigation-template').html();
+    var tmpl = $.templates("#myTemplate");
     //alert (source);
 
     // this notes object holds all our notes
