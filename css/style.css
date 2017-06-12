@@ -150,18 +150,9 @@
 	src: local('Tiempos Text Bold'), url('./writing/TiemposText-Bold.woff') format('woff');
 }
 
-
-html {
-	font-size: 100%;
-}
-
-html,
-body {
+.app-content-detail {
 	margin: auto;
 	background: #fff;
-}
-
-body {
 	line-height: 1.555;
 	text-align: justify;
 	padding: 2em;
@@ -170,20 +161,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-moz-font-feature-settings: "liga" on;
-}
-
-#write {
-	max-width: 752px;
-	margin: 0 auto;
-	margin-bottom: 2em;
-	line-height: 1.53;
-}
-
-#write > h2:first-child,
-#write > h3:first-child,
-#write > h4:first-child,
-#write > p:first-child {
-	margin-top: 1.2em;
 }
 
 /* Typography
