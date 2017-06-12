@@ -68,7 +68,7 @@ $(document).ready(function () {
     View.prototype = {
         renderContent: function () {
             var tmpl = $.templates("#content-template");
-            var paper = {paper: this._papers.getActive()};
+            var paper = { paper: this._papers.getActive() };
             var html = tmpl.render(paper);
             $("#paper-content").html(html);
         },
@@ -81,7 +81,6 @@ $(document).ready(function () {
             var self = this;
             $('.paper-item > .paper-item-title').click(function () {
                 var id = parseInt($(this).parent().data('id'), 10);
-                alert(id);
                 self._papers.load(id);
                 self.render();
             });

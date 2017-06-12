@@ -16,7 +16,7 @@ style('paper', 'style');
 		</div>
 
         <div class="app-content-detail" id="paper-content">
-            <?php //print_unescaped($this->inc('content/reader')); ?>
+            <?php print_unescaped($this->inc('content/reader')); ?>
         </div>
 	</div>
 </div>
