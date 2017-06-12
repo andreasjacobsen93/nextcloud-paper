@@ -70,12 +70,10 @@ $(document).ready(function () {
             if (this._papers.getActive() === undefined)
                 return;
 
-            $("#paper-content").html("");
-
             var tmpl = $.templates("#content-template");
             var paper = { content: this._papers.getActive().content };
             var html = tmpl.render(paper);
-            $("#paper-content").html(html);
+            $("#paper-reader").html(html);
         },
         renderList: function () {
             var tmpl = $.templates("#list-template");
