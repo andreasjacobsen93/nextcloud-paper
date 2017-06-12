@@ -11,7 +11,7 @@ use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
-use OCA\Paper\Service\NoteService;
+use OCA\Paper\Service\PaperService;
 
 class PaperController extends Controller {
 
@@ -21,7 +21,7 @@ class PaperController extends Controller {
     use Errors;
 
     public function __construct($AppName, IRequest $request,
-                                NoteService $service, $UserId){
+                                PaperService $service, $UserId){
         parent::__construct($AppName, $request);
         $this->service = $service;
         $this->userId = $UserId;
