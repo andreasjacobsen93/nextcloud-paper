@@ -68,8 +68,7 @@ $(document).ready(function () {
     View.prototype = {
         renderContent: function () {
             var tmpl = $.templates("#content-template");
-            var paper = { paper: this._papers.getActive() };
-
+            var paper = { content: this._papers.getActive().content };
             var html = tmpl.render(paper);
             $("#paper-content").html(html);
         },
@@ -83,7 +82,6 @@ $(document).ready(function () {
             $('.paper-item > .paper-item-title').click(function () {
                 var id = parseInt($(this).parent().data('id'), 10);
                 self._papers.load(id);
-                alert(self._papers.getActive().content);
                 self.render();
             });
         },
