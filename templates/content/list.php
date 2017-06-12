@@ -1,9 +1,9 @@
 <script id="list-template" type="text/x-jsrender">
-    {{#each papers}}
+    {{#for  papers}}
     <li class="note with-menu {{#if active}}active{{/if}}" data-id="{{ id }}">
-        <a href="#">{{ title }}</a>
+        <a href="#">{{:title}}</a>
     </li>
-    {{/each}}
+    {{/for}}
 </script>
 
 <ul></ul>
