@@ -1,6 +1,6 @@
 <?php
-script('paper', 'script');
 script('paper', '3rdparty/jsrender');
+script('paper', 'script');
 style('paper', 'style');
 
 ?>
