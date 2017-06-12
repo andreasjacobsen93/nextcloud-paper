@@ -1,11 +1,12 @@
-var source = $('#navigation-template').html();
-alert(source);
-var template = Handlebars.compile(source);
-/*
+
 (function (OC, window, $, undefined) {
     'use strict';
 
     $(document).ready(function () {
+
+        var source = $('#navigation-template').html();
+        alert(source);
+        var template = Handlebars.compile(source);
 
         // this notes object holds all our notes
         /*var Papers = function (baseUrl) {
@@ -77,6 +78,5 @@ var template = Handlebars.compile(source);
         //    alert('Could not load papers');
         //});
     });
- *//*
+ */
 })(OC, window, jQuery);
-*/
