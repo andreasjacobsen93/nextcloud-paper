@@ -76,7 +76,7 @@
             view.render();
         //}).fail(function () {
         //    alert('Could not load papers');
-        //});
+        //});*/
     });
- */
+
 })(OC, window, jQuery);
