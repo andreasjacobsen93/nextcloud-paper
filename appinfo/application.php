@@ -17,7 +17,7 @@ use \OCA\Paper\Db\PaperMapper;
 class Application extends App {
 
     public function __construct(array $urlParams=array()){
-        parent::__construct('Paper', $urlParams);
+        parent::__construct('paper', $urlParams);
 
         $container = $this->getContainer();
 
