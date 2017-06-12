@@ -28,7 +28,7 @@ class Application extends App {
             return new PageController(
                 $c->query('AppName'),
                 $c->query('Request'),
-                $c->query('ServerContainer')->getUserSession()->getUser()->getUID(),
+                $c->query('ServerContainer')->getUserSession()->getUser()->getUID()
             );
         });
         $container->registerService('PaperController', function($c) {
