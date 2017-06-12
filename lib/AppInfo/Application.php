@@ -12,5 +12,5 @@ namespace OCA\Paper\AppInfo;
 //require_once "../../lib/JSLikeHTMLElement.php";
 //require_once "../../lib/Readability.php";
 
-require_once '/apps/paper/lib/JSLikeHTMLElement.php';
-require_once '/apps/paper/lib/Readability.php';
+require_once '../../lib/JSLikeHTMLElement.php';
+require_once '../../lib/Readability.php';
