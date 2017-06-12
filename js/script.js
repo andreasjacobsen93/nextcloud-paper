@@ -5,7 +5,6 @@
     $(document).ready(function () {
 
         var source = $('#navigation-template').html();
-        alert(source);
         var template = Handlebars.compile(source);
 
         // this notes object holds all our notes

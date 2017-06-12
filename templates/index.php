@@ -19,5 +19,3 @@ style('paper', 'style');
         </div>
 	</div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
