@@ -1,7 +1,7 @@
 
 <form id="add_form">
-    <input type="text" id="add_url"/>
-    <button id="bookmark_add_submit" title="Add" class="icon-add"></button>
+    <input type="text" id="add_url" title="add_url"/>
+    <button id="add_button" title="Add" class="icon-add"></button>
 </form>
 
 <ul id="navigation-list">

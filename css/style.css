@@ -23,31 +23,18 @@
 /* ------------------------------------------------- */
 
 #add_form {
-	padding-bottom: 2em;
-}
-
-#add_form_loading {
-	visibility: hidden;
-	float: right;
-	margin: 8px;
+	padding: 5px;
 }
 
 #add_form input {
-	margin: 0.3em;
 }
 
 #add_url {
-	width: 98%;
 }
 
 #bookmark_add_submit {
 	background-color: transparent;
 	border: none;
-	position: absolute;
-	right: 0;
-	top: 0;
-	opacity: .5;
-	padding: 17px 14px;
 }
 
 /* ------------------------------------------------- */
