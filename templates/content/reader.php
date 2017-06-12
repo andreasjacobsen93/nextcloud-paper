@@ -1,4 +1,4 @@
-<xmp theme="united" style="display:none;">
+<xmp>
 # Markdown text goes in here
 
 ## Chapter 1
