@@ -34,8 +34,6 @@
 // $r->init();
 // echo $r->articleContent->innerHTML;
 
-use \OCA\Paper\JSLikeHTMLElement;
-
 class Readability
 {
 	public $version = '1.7.1-without-multi-page';

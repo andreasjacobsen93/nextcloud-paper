@@ -1,5 +1,4 @@
 <?php
-use \OCA\Paper\Readability;
 
 $doc = new Readability();
 $doc->input('https://www.gnu.org/software/gnuzilla/');
