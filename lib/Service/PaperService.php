@@ -13,8 +13,8 @@ use Exception;
 use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 
-use OCA\Paper\Db\Note;
-use OCA\Paper\Db\NoteMapper;
+use OCA\Paper\Db\Paper;
+use OCA\Paper\Db\PaperMapper;
 
 use Embed\Embed;
 
@@ -22,7 +22,7 @@ class PaperService
 {
     private $mapper;
 
-    public function __construct(NoteMapper $mapper){
+    public function __construct(PaperMapper $mapper){
         $this->mapper = $mapper;
     }
 
@@ -53,7 +53,7 @@ class PaperService
     }
 
     public function create($url, $userid) {
-        $note = new Note();
+        $paper = new Paper();
 
         $info = Embed::create($url);
 
@@ -64,26 +64,26 @@ class PaperService
         $title = $doc->articleTitle->innerHTML;
         $content = $doc->articleContent->innerHTML;
 
-        $note->setTitle($title);
-        $note->setDescription($info->description);
-        $note->setSite($info->providerUrl);
-        $note->setLink($info->url);
-        $note->setAuthor($info->authorName);
-        $note->setPublished($info->publishedDate);
-        $note->setReadtime('');
-        $note->setContent($content);
-        $note->setImage($info->image);
-        $note->setDatetime('');
-        $note->setUserId($userid);
-        return $this->mapper->insert($note);
+        $paper->setTitle($title);
+        $paper->setDescription($info->description);
+        $paper->setSite($info->providerUrl);
+        $paper->setLink($info->url);
+        $paper->setAuthor($info->authorName);
+        $paper->setPublished($info->publishedDate);
+        $paper->setReadtime('');
+        $paper->setContent($content);
+        $paper->setImage($info->image);
+        $paper->setDatetime('');
+        $paper->setUserId($userid);
+        return $this->mapper->insert($paper);
     }
 
     public function update($id, $title, $description, $userId) {
         try {
-            $note = $this->mapper->find($id, $userId);
-            $note->setTitle($title);
-            $note->setDescription($description);
-            return $this->mapper->update($note);
+            $paper = $this->mapper->find($id, $userId);
+            $paper->setTitle($title);
+            $paper->setDescription($description);
+            return $this->mapper->update($paper);
         } catch(Exception $e) {
             $this->handleException($e);
         }
@@ -91,9 +91,9 @@ class PaperService
 
     public function delete($id, $userId) {
         try {
-            $note = $this->mapper->find($id, $userId);
-            $this->mapper->delete($note);
-            return $note;
+            $paper = $this->mapper->find($id, $userId);
+            $this->mapper->delete($paper);
+            return $paper;
         } catch(Exception $e) {
             $this->handleException($e);
         }
