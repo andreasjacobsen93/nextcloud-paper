@@ -52,7 +52,7 @@ $(document).ready(function () {
         },
         renderList: function () {
             var tmpl = $.templates("#list-template");
-            var papers = {notes: this._papers.getAll()};
+            var papers = {papers: this._papers.getAll()};
             var html = tmpl.render(papers);
             $("#paper-list").find("ul").html(html);
         },
