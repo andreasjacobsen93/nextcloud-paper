@@ -118,6 +118,7 @@ $(document).ready(function () {
             var html = tmpl.render(paper);
             $("#paper-reader").html(html);
 
+            var self = this;
             $("#paper-delete").click(function () {
                 self._papers.removeActive().done(function () {
                     self.render();
