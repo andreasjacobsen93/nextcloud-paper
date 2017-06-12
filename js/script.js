@@ -2,7 +2,8 @@
 $(document).ready(function () {
 
     var tmpl = $.templates("#myTemplate");
-    //alert (source);
+    var person = {name: "Jim"};
+    var html = tmpl.render(person);
 
     // this notes object holds all our notes
     /*var Papers = function (baseUrl) {
