@@ -67,6 +67,9 @@ $(document).ready(function () {
 
     View.prototype = {
         renderContent: function () {
+            if (this._papers.getActive() === undefined)
+                return;
+
             var tmpl = $.templates("#content-template");
             var paper = { content: this._papers.getActive().content };
             var html = tmpl.render(paper);
