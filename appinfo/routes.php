@@ -1,4 +1,5 @@
 <?php
+namespace OCA\Paper\AppInfo;
 
 $application = new Application();
 

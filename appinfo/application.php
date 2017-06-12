@@ -1,4 +1,11 @@
 <?php
+namespace OCA\Paper\AppInfo;
+
+use \OCP\AppFramework\App;
+
+use \OCA\Paper\Controller\AuthorController;
+use \OCA\Paper\Service\AuthorService;
+use \OCA\Paper\Db\AuthorMapper;
 
 /**
  * Created by PhpStorm.
@@ -25,13 +32,33 @@ class Application extends App {
         $container->registerService('PaperController', function($c) {
             return new PaperController(
                 $c->query('AppName'),
-                $c->query('Request')
+                $c->query('Request'),
+                $c->query('PaperService')
             );
         });
         $container->registerService('PaperApiController', function($c) {
             return new PaperApiController(
                 $c->query('AppName'),
-                $c->query('Request')
+                $c->query('Request'),
+                $c->query('PaperService')
+            );
+        });
+
+        /**
+         * Services
+         */
+        $container->registerService('PaperService', function($c){
+            return new PaperService(
+                $c->query('PaperMapper')
+            );
+        });
+
+        /**
+         * Mappers
+         */
+        $container->registerService('PaperMapper', function($c){
+            return new PaperMapper(
+                $c->query('ServerContainer')->getDb()
             );
         });
     }
