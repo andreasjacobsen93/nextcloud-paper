@@ -6,7 +6,7 @@
  * Date: 12/06/2017
  * Time: 16.09
  */
-namespace OCA\OwnNotes\Service;
+namespace OCA\Paper\Service;
 
 use Exception;
 
