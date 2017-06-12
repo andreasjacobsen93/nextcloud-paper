@@ -3,6 +3,9 @@
 
     $(document).ready(function () {
 
+        var source = $('#navigation-tpl').html();
+        var template = Handlebars.compile(source);
+
         // this notes object holds all our notes
         var Papers = function (baseUrl) {
             this._baseUrl = baseUrl;
@@ -56,7 +59,7 @@
             },
             renderNavigation: function () {
                 var source = $('#navigation-tpl').html();
-                Handlebars.compile(source);
+                var template = Handlebars.compile(source);
             },
             render: function () {
                 //this.renderContent();
