@@ -26,15 +26,12 @@
 	padding: 5px;
 }
 
-#add_form input {
-}
-
 #add_url {
+	width: 100%;
 }
 
-#bookmark_add_submit {
-	background-color: transparent;
-	border: none;
+#add_button {
+	width: 100%;
 }
 
 /* ------------------------------------------------- */
