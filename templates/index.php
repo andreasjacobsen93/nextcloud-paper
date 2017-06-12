@@ -1,5 +1,6 @@
 <?php
 script('paper', 'script');
+script('paper', 'marked');
 style('paper', 'style');
 ?>
 <div id="app">
