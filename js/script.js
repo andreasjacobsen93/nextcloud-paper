@@ -54,7 +54,7 @@ $(document).ready(function () {
             var tmpl = $.templates("#list-template");
             var papers = {papers: this._papers.getAll()};
             var html = tmpl.render(papers);
-            $("#paper-list ul").html(html);
+            $("#paper-list").find("ul").html(html);
         },
         renderNavigation: function () {
         },

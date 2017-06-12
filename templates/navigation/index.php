@@ -1,8 +1,8 @@
-
-    <ul>
-        <li id="new-note"><a href="#" id="here">Add note</a></li>
-    </ul>
-
-<script id="navigation-template" type="text/x-jsrender">
-Name: {{:name}}
-</script>
+<ul id="navigation-list">
+    <li>
+        <form id="add_form">
+            <input type="text" id="add_url" value="" placeholder="<?php p($l->t('Address')); ?>"/>
+            <button id="bookmark_add_submit" title="Add" class="icon-add"></button>
+        </form>
+    </li>
+</ul>
