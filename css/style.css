@@ -22,8 +22,8 @@
 
 /* ------------------------------------------------- */
 
-@include url(http: //fonts.googleapis.com/css?family=Source+Sans+Pro: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
-@include url(http: //fonts.googleapis.com/css?family=Merriweather: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
+@include url(http://fonts.googleapis.com/css?family=Source+Sans+Pro: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
+@include url(http://fonts.googleapis.com/css?family=Merriweather: 400italic, 700italic, 700, 400&subset=latin, latin-ext);
 
 @font-face {
 	font-family: 'Proxima Nova';
@@ -167,7 +167,7 @@
 -------------------------------------------------------- */
 .app-content-detail,
 .app-content-detail p {
-	font-family: "Tiempos", "Merriweather", "Freight Text", Palatino, Times !important;
+	font-family: /*"Tiempos", "Merriweather", "Freight Text", */Palatino, Times, serif !important;
 	line-height: 1.58;
 	letter-spacing: -0.003em;
 	color: rgba(0, 0, 0, .8);
@@ -189,7 +189,7 @@
 .app-content-detail h4,
 .app-content-detail h5,
 .app-content-detail h6 {
-	font-family: "Tiempos", "Kievit", "Proxima Nova", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: /*"Tiempos", "Kievit", "Proxima Nova", "Source Sans Pro", "Helvetica Neue", */Helvetica, Arial, sans-serif;
 	font-weight: 700 !important;
 	font-style: normal;
 	line-height: 1.15;
@@ -220,7 +220,6 @@ a:hover {
 }
 
 .app-content-detail h1 {
-	margin-top: 0;
 	font-size: 40px;
 	line-height: 48px;
 	color: #101010;
@@ -281,7 +280,7 @@ a:hover {
 	font-size: 16.8px;
 	padding-top: 4px;
 	padding-right: 15px;
-	content: "•";
+	content: "*";
 	position: absolute;
 	display: inline-block;
 	box-sizing: border-box;
@@ -302,7 +301,6 @@ a:hover {
 	line-height: 1.15;
 	letter-spacing: -0.02em;
 	font-weight: 400;
-	font-style: normal;
 	font-size: 21px;
 }
 
