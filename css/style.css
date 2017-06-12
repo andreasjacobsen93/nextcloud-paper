@@ -47,6 +47,10 @@
 	cursor: pointer;
 }
 
+.paper-item .active {
+	background-color: #eee;
+}
+
 .paper-item:hover {
 	background-color: #eee;
 	cursor: pointer;
