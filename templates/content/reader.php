@@ -1,15 +1,11 @@
-<xmp>
-# Markdown text goes in here
+<?php
 
-## Chapter 1
+require_once "../../lib/Readability.php";
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-et dolore magna aliqua.
+$doc = new Readability();
+$doc->input('http://google.com');
+$doc->init();
 
-## Chapter 2
+$content = $doc->getContent();
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
-</xmp>
+echo $doc->articleContent;
