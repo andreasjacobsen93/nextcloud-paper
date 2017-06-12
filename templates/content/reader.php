@@ -4,5 +4,3 @@
         <p>{{:paper.content}}</p>
     {{/if}}
 </script>
-
-<div id="paper-content"></div>
