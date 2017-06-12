@@ -41,7 +41,11 @@
 
 .paper-item {
 	padding: 5px;
-	border-bottom: 1px black solid;
+	border-bottom: 1px #eee solid;
+}
+
+.paper-item-title {
+	font-size: 21px;
 }
 
 /* ------------------------------------------------- */
