@@ -110,8 +110,10 @@ $(document).ready(function () {
 
     View.prototype = {
         renderContent: function () {
-            if (this._papers.getActive() === undefined)
+            if (this._papers.getActive() === undefined) {
+                $("#paper-reader").html("");
                 return;
+            }
 
             var tmpl = $.templates("#content-template");
             var paper = { content: this._papers.getActive().content };
