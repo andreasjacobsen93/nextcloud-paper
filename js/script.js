@@ -136,8 +136,8 @@ $(document).ready(function () {
             $("#paper-list").find("ul").html(html);
 
             var self = this;
-            $('.paper-item > .paper-item-title').click(function () {
-                var id = parseInt($(this).parent().data('id'), 10);
+            $('.paper-item').click(function () {
+                var id = parseInt($(this).data('id'), 10);
                 self._papers.load(id);
                 self.render();
             });
@@ -150,7 +150,6 @@ $(document).ready(function () {
                 };
 
                 self._papers.create(paper).done(function() {
-                    $('#add_url').val('');
                     self.render();
                 }).fail(function () {
                     alert('Could not add new paper');
