@@ -12,7 +12,7 @@ use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\ApiController;
 
-use OCA\Paper\Service\NoteService;
+use OCA\Paper\Service\PaperService;
 
 
 class PaperApiController extends ApiController {
@@ -23,7 +23,7 @@ class PaperApiController extends ApiController {
     use Errors;
 
     public function __construct($AppName, IRequest $request,
-                                NoteService $service, $UserId){
+                                PaperService $service, $UserId){
         parent::__construct($AppName, $request);
         $this->service = $service;
         $this->userId = $UserId;
