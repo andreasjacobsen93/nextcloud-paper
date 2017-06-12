@@ -14,5 +14,6 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Goose\\' => array($vendorDir . '/scotteh/php-goose/src'),
+    'Embed\\' => array($vendorDir . '/embed/embed/src'),
     'DOMWrap\\' => array($vendorDir . '/scotteh/php-dom-wrapper/src'),
 );

@@ -1,10 +1,10 @@
 <?php
 
-$doc = new Readability();
-$doc->input('https://www.gnu.org/software/gnuzilla/');
-$doc->init();
+use Embed\Embed;
 
-//$content = $doc->getContent();
+//Load any url:
+$info = Embed::create('https://www.youtube.com/watch?v=PP1xn5wHtxE');
 
-echo '<h1>'.$doc->articleTitle->innerHTML.'</h1>';
-echo $doc->articleContent->innerHTML;
+//Get content info
+
+echo $info->title; //The page title
