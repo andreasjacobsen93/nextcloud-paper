@@ -4,6 +4,7 @@ namespace OCA\Paper\AppInfo;
 use \OCP\AppFramework\App;
 
 use \OCA\Paper\Controller\PaperController;
+use \OCA\Paper\Controller\PageController;
 use \OCA\Paper\Controller\PaperApiController;
 use \OCA\Paper\Service\PaperService;
 use \OCA\Paper\Db\PaperMapper;
