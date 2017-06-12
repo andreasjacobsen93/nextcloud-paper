@@ -56,8 +56,8 @@ class PaperApiController extends ApiController {
      * @NoCSRFRequired
      * @NoAdminRequired
      *
-     * @param string $title
-     * @param string $content
+     * @param $url
+     * @return
      */
     public function create($url) {
         return $this->service->create($url, $this->userId);

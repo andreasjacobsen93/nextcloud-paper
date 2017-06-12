@@ -17,6 +17,7 @@ use OCA\Paper\Db\Paper;
 use OCA\Paper\Db\PaperMapper;
 
 use Embed\Embed;
+use Readability;
 
 class PaperService
 {
