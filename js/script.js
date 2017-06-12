@@ -1,5 +1,6 @@
 var source = $('#navigation-tpl').html();
-Handlebars.compile(source);
+alert(source);
+var template = Handlebars.compile(source);
 
 (function (OC, window, $, undefined) {
     'use strict';

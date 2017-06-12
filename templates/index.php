@@ -1,5 +1,4 @@
 <?php
-script('paper', 'handlebars');
 script('paper', 'script');
 
 style('paper', 'style');
