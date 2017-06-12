@@ -65,11 +65,11 @@ class PaperService
         $title = $doc->articleTitle->innerHTML;
         $content = $doc->articleContent->innerHTML;
 
-        $paper->setTitle(subtr($title,0,200));
-        $paper->setDescription(subtr($info->description,0,200));
-        $paper->setSite(subtr($info->providerUrl,0,200));
-        $paper->setLink(subtr($info->url,0,200));
-        $paper->setAuthor(subtr($info->authorName,0,200));
+        $paper->setTitle(substr($title,0,200));
+        $paper->setDescription(substr($info->description,0,200));
+        $paper->setSite(substr($info->providerUrl,0,200));
+        $paper->setLink(substr($info->url,0,200));
+        $paper->setAuthor(substr($info->authorName,0,200));
         $paper->setPublished($info->publishedDate);
         $paper->setReadtime('');
         $paper->setContent($content);
