@@ -1,4 +1,4 @@
-var source = $('#navigation-tpl').html();
+var source = $('#navigation-template').html();
 alert(source);
 var template = Handlebars.compile(source);
 

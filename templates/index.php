@@ -1,6 +1,5 @@
 <?php
 script('paper', 'script');
-
 style('paper', 'style');
 
 ?>
