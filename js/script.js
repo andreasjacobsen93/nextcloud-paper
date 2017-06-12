@@ -39,6 +39,24 @@ $(document).ready(function () {
                 deferred.reject();
             });
             return deferred.promise();
+        },
+        create: function (paper) {
+            var deferred = $.Deferred();
+            var self = this;
+            $.ajax({
+                url: this._baseUrl,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(paper)
+            }).done(function (paper) {
+                self._papers.push(paper);
+                self._activeNote = paper;
+                self.load(paper.id);
+                deferred.resolve();
+            }).fail(function () {
+                deferred.reject();
+            });
+            return deferred.promise();
         }
     };
 
@@ -57,6 +75,18 @@ $(document).ready(function () {
             $("#paper-list").find("ul").html(html);
         },
         renderNavigation: function () {
+            var self = this;
+            $('#add_button').click(function () {
+                var paper = {
+                    url: $('#add_url').val()
+                };
+
+                self._papers.create(paper).done(function() {
+                    self.render();
+                }).fail(function () {
+                    alert('Could not add new paper');
+                });
+            });
         },
         render: function () {
             this.renderContent();
