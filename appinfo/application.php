@@ -36,16 +36,16 @@ class Application extends App {
             return new PaperController(
                 $c->query('AppName'),
                 $c->query('Request'),
-                $c->query('ServerContainer')->getUserSession()->getUser()->getUID(),
-                $c->query('PaperService')
+                $c->query('PaperService'),
+                $c->query('ServerContainer')->getUserSession()->getUser()->getUID()
             );
         });
         $container->registerService('PaperApiController', function($c) {
             return new PaperApiController(
                 $c->query('AppName'),
                 $c->query('Request'),
-                $c->query('ServerContainer')->getUserSession()->getUser()->getUID(),
-                $c->query('PaperService')
+                $c->query('PaperService'),
+                $c->query('ServerContainer')->getUserSession()->getUser()->getUID()
             );
         });
 
