@@ -1,8 +1,9 @@
 <?php
 script('paper', 'script');
+script('paper', 'strapdown');
 style('paper', 'style');
+style('paper', 'bootstrap');
 ?>
-
 <div id="app">
 	<div id="app-navigation">
 		<?php print_unescaped($this->inc('navigation/index')); ?>
