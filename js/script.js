@@ -70,6 +70,8 @@ $(document).ready(function () {
             if (this._papers.getActive() === undefined)
                 return;
 
+            $("#paper-content").html("");
+
             var tmpl = $.templates("#content-template");
             var paper = { content: this._papers.getActive().content };
             var html = tmpl.render(paper);
