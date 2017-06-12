@@ -44,6 +44,12 @@
 	border-bottom: 1px #eee solid;
 }
 
+.paper-item-info {
+	color: #7a7a7a;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
 .paper-item-title {
 	font-size: 16px;
 }
