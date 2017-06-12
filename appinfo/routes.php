@@ -11,7 +11,7 @@ $application = new Application();
  * The controller class has to be registered in the application.php file since
  * it's instantiated in there
  */
-$application->registerRoutes($this, array('routes' => [
+$application->registerRoutes($this, array(
     'resources' => [
         'paper' => ['url' => '/papers'],
         'paper_api' => ['url' => '/api/0.1/papers']
@@ -21,4 +21,4 @@ $application->registerRoutes($this, array('routes' => [
         ['name' => 'paper_api#preflighted_cors', 'url' => '/api/0.1/{path}',
             'verb' => 'OPTIONS', 'requirements' => ['path' => '.+']]
     ]
-]));
+));
