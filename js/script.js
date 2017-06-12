@@ -1,13 +1,13 @@
 
 $(document).ready(function () {
 
-    var tmpl = $.templates("#myTemplate");
-    var person = {name: "Jim"};
-    var html = tmpl.render(person);
-    $("#here").html(html);
+    //var tmpl = $.templates("#myTemplate");
+    //var person = {name: "Jim"};
+    //var html = tmpl.render(person);
+    //$("#here").html(html);
 
     // this notes object holds all our notes
-    /*var Papers = function (baseUrl) {
+    var Papers = function (baseUrl) {
         this._baseUrl = baseUrl;
         this._papers = [];
         this._activePaper = undefined;
@@ -54,25 +54,21 @@ $(document).ready(function () {
         renderContent: function () {
         },
         renderList: function () {
-            var source = $('#list-tpl').html();
-            var template = Handlebars.compile(source);
         },
         renderNavigation: function () {
-            var source = $('#navigation-tpl').html();
-            var template = Handlebars.compile(source);
         },
         render: function () {
-            //this.renderContent();
-            //this.renderList();
+            this.renderContent();
+            this.renderList();
             this.renderNavigation();
         }
     };
 
     var papers = new Papers(OC.generateUrl('/apps/paper/papers'));
     var view = new View(papers);
-    //papers.loadAll().done(function () {
+    papers.loadAll().done(function () {
         view.render();
-    //}).fail(function () {
-    //    alert('Could not load papers');
-    //});*/
+    }).fail(function () {
+        alert('Could not load papers');
+    });
 });
