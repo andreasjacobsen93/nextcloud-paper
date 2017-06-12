@@ -1,6 +1,6 @@
 
+<strong>Add Website:</strong><br>
 <form id="add_form">
-    <strong>Add Website:</strong><br>
     <input type="text" id="add_url" title="add_url"/><br>
     <button id="add_button" title="Add" class="icon-add"></button>
 </form>
