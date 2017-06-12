@@ -270,9 +270,9 @@ a:hover {
 	color: #202123;
 }
 
-h4,
-h5,
-h6 {
+.app-content-detail h4,
+.app-content-detail h5,
+.app-content-detail h6 {
 	font-family: "Kievit", "Proxima Nova", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 21px;
 	line-height: 32px;
@@ -280,20 +280,19 @@ h6 {
 	font-weight: 400;
 }
 
-small,
-.font_small {
+.app-content-detail small,
+.app-content-detail .font_small {
 	font-size: 0.707em;
 }
 
-p,
-.mathjax-block {
+.app-content-detail p {
 	margin-top: 0;
 	-webkit-hypens: auto;
 	-moz-hypens: auto;
 	hyphens: auto;
 }
 
-ul {
+.app-content-detail ul {
 	list-style: none;
 	padding-left: 1.2em;
 	font-weight: 400;
@@ -301,7 +300,7 @@ ul {
 	font-size: 21px;
 }
 
-ul > li:before {
+.app-content-detail ul > li:before {
 	font-size: 16.8px;
 	padding-top: 4px;
 	padding-right: 15px;
@@ -314,11 +313,11 @@ ul > li:before {
 	text-align: right;
 }
 
-ol {
+.app-content-detail ol {
 	padding-left: 1.2em;
 }
 
-blockquote {
+.app-content-detail blockquote {
 	margin-left: 1em;
 	padding-left: 1em;
 	border-left: 1px solid #ddd;
@@ -330,19 +329,19 @@ blockquote {
 	font-size: 21px;
 }
 
-blockquote p {
+.app-content-detail blockquote p {
 	font-style: normal;
 	margin-bottom: 0;
 }
 
-code,
-pre {
+.app-content-detail code,
+.app-content-detail pre {
 	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
 	font-size: .9em;
 	background: white;
 }
 
-pre.md-fences {
+.app-content-detail pre.md-fences {
 	margin-left: 1em;
 	padding-left: 1em;
 	border: 1px solid #ddd;
@@ -351,22 +350,22 @@ pre.md-fences {
 	margin-bottom: 1.5em;
 }
 
-a {
+.app-content-detail a {
 	color: #2484c1;
 	text-decoration: none;
 }
 
-a img {
+.app-content-detail a img {
 	border: none;
 }
 
-h1 a,
-h1 a:hover {
+.app-content-detail h1 a,
+.app-content-detail h1 a:hover {
 	color: #333;
 	text-decoration: none;
 }
 
-hr {
+.app-content-detail hr {
 	color: #ddd;
 	height: 1px;
 	margin: 2em 0;
@@ -376,117 +375,35 @@ hr {
 	border-right: 0;
 }
 
-table {
+.app-content-detail table {
 	margin-bottom: 1.333333rem;
 }
 
-table th,
-table td {
+.app-content-detail table th,
+.app-content-detail table td {
 	padding: 8px;
 	line-height: 1.333333rem;
 	vertical-align: top;
 	border-top: 1px solid #ddd;
 }
 
-table th {
+.app-content-detail table th {
 	font-weight: bold;
 }
 
-table thead th {
+.app-content-detail table thead th {
 	vertical-align: bottom;
 }
 
-table caption + thead tr:first-child th,
-table caption + thead tr:first-child td,
-table colgroup + thead tr:first-child th,
-table colgroup + thead tr:first-child td,
-table thead:first-child tr:first-child th,
-table thead:first-child tr:first-child td {
+.app-content-detail table caption + thead tr:first-child th,
+.app-content-detail table caption + thead tr:first-child td,
+.app-content-detail table colgroup + thead tr:first-child th,
+.app-content-detail table colgroup + thead tr:first-child td,
+.app-content-detail table thead:first-child tr:first-child th,
+.app-content-detail table thead:first-child tr:first-child td {
 	border-top: 0;
 }
 
-table tbody + tbody {
+.app-content-detail table tbody + tbody {
 	border-top: 2px solid #ddd;
-}
-
-.task-list {
-	padding: 0;
-}
-
-.task-list-item {
-	padding-left: 1.6rem;
-}
-
-.task-list-item input:before {
-	content: '\221A';
-	display: inline-block;
-	width: 1.33333333rem;
-	height: 1.6rem;
-	vertical-align: middle;
-	text-align: center;
-	color: #ddd;
-	background-color: #fefefe;
-}
-
-.task-list-item input:checked:before,
-.task-list-item input[checked]:before {
-	color: inherit;
-}
-
-.md-tag {
-	color: inherit;
-	font: inherit;
-}
-
-#write pre.md-meta-block {
-	min-height: 35px;
-	padding: 0.5em 1em;
-}
-
-#write pre.md-meta-block {
-	white-space: pre;
-	background: #f8f8f8;
-	border: 0px;
-	color: #999;
-	border-left: 1000px #f8f8f8 solid;
-	margin-left: -1000px;
-	border-right: 1000px #f8f8f8 solid;
-	margin-right: -1000px;
-	margin-bottom: 2em;
-	margin-top: -1.3333333333333rem;
-	padding-top: 26px;
-	padding-bottom: 10px;
-	line-height: 1.8em;
-	font-size: 0.9em;
-	font-size: 0.76em;
-	padding-left: 0;
-}
-
-.md-img-error.md-image > .md-meta {
-	vertical-align: bottom;
-}
-
-#write > h5.md-focus:before {
-	top: 2px;
-}
-
-.md-toc {
-	margin-top: 40px;
-}
-
-.md-toc-content {
-	padding-bottom: 20px;
-}
-
-.outline-expander:before {
-	color: inherit;
-	font-size: 14px;
-	top: auto;
-	content: "\f0da";
-	font-family: FontAwesome;
-}
-
-.outline-expander:hover:before,
-.outline-item-open > .outline-item > .outline-expander:before {
-	content: "\f0d7";
 }
