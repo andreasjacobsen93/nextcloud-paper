@@ -1,8 +1,6 @@
 .crayon-syntax {
-    font-family: Monaco, 'MonacoRegular', 'Courier New', monospace !important;
     padding: 1em;
     border-radius: 6px;
-    font-size: 14px !important;
     overflow: auto;
     box-shadow: none;
     border: 4px solid #ecf0f1 !important;
@@ -38,6 +36,7 @@
 
 .crayon-syntax p, .crayon-syntax div {
     font-family: Monaco, 'MonacoRegular', 'Courier New', monospace !important;
+    font-size: 12px !important;
     background: 0;
     border: 0;
     padding: 0;
