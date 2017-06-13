@@ -18,7 +18,6 @@ use OCA\Paper\Db\PaperMapper;
 
 use Embed\Embed;
 use Readability;
-use andreskrey\Readability\HTMLParser;
 
 class PaperService
 {
@@ -68,30 +67,21 @@ class PaperService
         return $doc;
     }
 
-    private function getParser($url)
-    {
-        $parser = new HTMLParser();
-        $html = file_get_contents($url);
-        $doc = $parser->parse($html);
-
-        return $doc;
-    }
-
     public function create($url, $userid) {
         $paper = new Paper();
 
         $embed = $this->getEmbed($url);
-        $parser = $this->getParser($url);
+        $readability = $this->getReadability($url);
 
-        $title = $parser['title'];
-        $description = '';
-        $site = '';
+        $title = $readability->articleTitle;
+        $description = $embed->description;
+        $site = $embed->providerUrl;
         $link = $url;
-        $author = $parser['author'];
-        $published = '';
+        $author = $embed->authorName;
+        $published = $embed->publishedDate;
         $readtime = '';
-        $content = $parser['html'];
-        $image = $parser['image'];
+        $content = $readability->articleContent;
+        $image = $embed->image;
         $datetime = '';
 
         $paper->setTitle(substr($title,0,200));
