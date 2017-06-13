@@ -10,6 +10,8 @@ $(document).ready(function () {
         this._activePaper = undefined;
     };
 
+    var creating = false;
+
     Papers.prototype = {
         load: function (id) {
             var self = this;
@@ -72,6 +74,10 @@ $(document).ready(function () {
             return deferred.promise();
         },
         create: function (paper) {
+            if (creating)
+                return;
+
+            creating = true;
             var deferred = $.Deferred();
             var self = this;
             $.ajax({
@@ -87,6 +93,8 @@ $(document).ready(function () {
             }).fail(function () {
                 deferred.reject();
             });
+
+            creating = false;
             return deferred.promise();
         },
         updateActive: function (title, description) {
@@ -110,24 +118,26 @@ $(document).ready(function () {
 
     View.prototype = {
         renderContent: function () {
-            if (this._papers.getActive() === undefined) {
+            if (this._papers.getActive() === undefined)
+            {
                 $("#paper-reader").html("");
-                return;
             }
+            else
+            {
+                var tmpl = $.templates("#content-template");
+                var paper = { content: this._papers.getActive().content };
+                var html = tmpl.render(paper);
+                $("#paper-reader").html(html);
 
-            var tmpl = $.templates("#content-template");
-            var paper = { content: this._papers.getActive().content };
-            var html = tmpl.render(paper);
-            $("#paper-reader").html(html);
-
-            var self = this;
-            $("#paper-delete").click(function () {
-                self._papers.removeActive().done(function () {
-                    self.render();
-                }).fail(function () {
-                    alert('Could not delete note, not found');
+                var self = this;
+                $("#paper-delete").click(function () {
+                    self._papers.removeActive().done(function () {
+                        self.render();
+                    }).fail(function () {
+                        alert('Could not delete note, not found');
+                    });
                 });
-            });
+            }
         },
         renderList: function () {
             var tmpl = $.templates("#list-template");
