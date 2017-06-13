@@ -58,10 +58,10 @@ class PaperService
         return Embed::create($url);
     }
 
-    private function getReadability($url)
+    private function getReadability($html)
     {
         $doc = new Readability();
-        $doc->input($url);
+        $doc->input($html);
         $doc->init();
 
         return $doc;
@@ -71,7 +71,9 @@ class PaperService
         $paper = new Paper();
 
         $embed = $this->getEmbed($url);
-        $readability = $this->getReadability($url);
+        $response = $embed->getResponse();
+
+        $readability = $this->getReadability($response->getHtmlContent());
 
         $title = $readability->articleTitle->innerHTML;
         $description = $embed->description;
