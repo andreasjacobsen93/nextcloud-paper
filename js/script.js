@@ -160,9 +160,13 @@ $(document).ready(function () {
                     return;
 
                 clicked = true;
+
+                var url_field = $('#add_url');
                 var paper = {
-                    url: $('#add_url').val()
+                    url: url_field.val()
                 };
+
+                url_field.val('');
 
                 self._papers.create(paper).done(function() {
                     self.render();
