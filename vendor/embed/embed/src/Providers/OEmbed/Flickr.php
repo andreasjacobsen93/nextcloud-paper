@@ -1,21 +1,9 @@
 <?php
+
 namespace Embed\Providers\OEmbed;
 
-class Flickr extends OEmbedImplementation
+class Flickr extends EndPoint implements EndPointInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getEndPoint()
-    {
-        return 'http://flickr.com/services/oembed';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getPatterns()
-    {
-        return ['https://www.flickr.com/*'];
-    }
+    protected static $pattern = 'www.flickr.com/*';
+    protected static $endPoint = 'http://flickr.com/services/oembed';
 }

@@ -1,28 +1,38 @@
 <?php
+
 namespace Embed\Providers;
 
-use Embed\Request;
-use Embed\Utils;
+use Embed\Adapters\Adapter;
 
 /**
- * Generic Dublin Core provider.
- *
- * Load the Dublin Core data of an url and store it
+ * Provider to get the data from the Dublin Core data elements in the HTML
  */
-class Dcterms extends Provider implements ProviderInterface
+class Dcterms extends Provider
 {
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function __construct(Adapter $adapter)
     {
-        if (!($html = $this->request->getHtmlContent())) {
-            return false;
+        parent::__construct($adapter);
+
+        if (!($html = $adapter->getResponse()->getHtmlContent())) {
+            return;
         }
 
-        foreach (Utils::getMetas($html) as $meta) {
-            if (stripos($meta[0], 'dc.') === 0) {
-                $this->bag->set(substr($meta[0], 3), $meta[1]);
+        foreach ($html->getElementsByTagName('meta') as $meta) {
+            $name = trim(strtolower($meta->getAttribute('name')));
+            $value = $meta->getAttribute('content');
+
+            if (empty($name) || empty($value)) {
+                continue;
+            }
+
+            foreach (['dc.', 'dc:', 'dcterms:'] as $prefix) {
+                if (stripos($name, $prefix) === 0) {
+                    $name = substr($name, strlen($prefix));
+                    $this->bag->set($name, $value);
+                }
             }
         }
     }
@@ -48,7 +58,7 @@ class Dcterms extends Provider implements ProviderInterface
      */
     public function getAuthorName()
     {
-        return $this->bag->get('author');
+        return $this->bag->get('creator') ?: $this->bag->get('author');
     }
 
     /**
@@ -56,6 +66,10 @@ class Dcterms extends Provider implements ProviderInterface
      */
     public function getPublishedTime()
     {
-        return $this->bag->get('date');
+        foreach (['date', 'date.created', 'date.issued'] as $key) {
+            if ($found = $this->bag->get($key)) {
+                return $found;
+            }
+        }
     }
 }

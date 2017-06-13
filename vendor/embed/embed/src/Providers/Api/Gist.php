@@ -1,24 +1,36 @@
 <?php
+
 namespace Embed\Providers\Api;
 
+use Embed\Adapters\Adapter;
 use Embed\Providers\Provider;
-use Embed\Providers\ProviderInterface;
 
 /**
- * Provider to use the API of gist.github.com
+ * Provider to use the API of gist.github.com.
  */
-class Gist extends Provider implements ProviderInterface
+class Gist extends Provider
 {
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function __construct(Adapter $adapter)
     {
-        $api = $this->request->withExtension('json');
+        parent::__construct($adapter);
 
-        if (($json = $api->getJsonContent())) {
+        $endPoint = $adapter->getResponse()->getUrl()->withExtension('json');
+        $response = $adapter->getDispatcher()->dispatch($endPoint);
+
+        if (($json = $response->getJsonContent())) {
             $this->bag->set($json);
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription()
+    {
+        return $this->bag->get('description');
     }
 
     /**
@@ -34,9 +46,25 @@ class Gist extends Provider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
+    public function getAuthorName()
+    {
+        return $this->bag->get('owner');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPublishedTime()
+    {
+        return $this->bag->get('created_at');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCode()
     {
-        if (($code = $this->bag->get('div')) && ($stylesheet = $this->bag->get('stylesheet'))) {
+        if (($code = $this->bag->get('div', true)) && ($stylesheet = $this->normalizeUrl($this->bag->get('stylesheet')))) {
             return  '<link href="'.$stylesheet.'" rel="stylesheet">'.$code;
         }
     }

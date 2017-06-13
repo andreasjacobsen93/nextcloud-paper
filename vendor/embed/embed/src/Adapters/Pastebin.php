@@ -1,21 +1,22 @@
 <?php
-/**
- * Adapter to generate embed code from pastebin
- */
+
 namespace Embed\Adapters;
 
-use Embed\Request;
+use Embed\Http\Response;
 use Embed\Utils;
 
-class Pastebin extends Webpage implements AdapterInterface
+/**
+ * Adapter to generate embed code from pastebin.
+ */
+class Pastebin extends Webpage
 {
     /**
      * {@inheritdoc}
      */
-    public static function check(Request $request)
+    public static function check(Response $response)
     {
-        return $request->isValid() && $request->match([
-            'http://pastebin.com/*',
+        return $response->isValid() && $response->getUrl()->match([
+            'pastebin.com/*',
         ]);
     }
 
@@ -24,7 +25,11 @@ class Pastebin extends Webpage implements AdapterInterface
      */
     public function getCode()
     {
-        $embed_url = 'http://pastebin.com/embed_iframe.php?i='.($this->request->getQueryParameter('i') ?: $this->request->getDirectoryPosition(0));
+        $this->width = null;
+        $this->height = null;
+
+        $url = $this->getResponse()->getUrl();
+        $embed_url = 'http://pastebin.com/embed_iframe.php?i='.($url->getQueryParameter('i') ?: $url->getDirectoryPosition(0));
 
         return Utils::iframe($embed_url);
     }

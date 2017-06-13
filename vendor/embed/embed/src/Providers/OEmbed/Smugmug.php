@@ -1,21 +1,9 @@
 <?php
+
 namespace Embed\Providers\OEmbed;
 
-class Smugmug extends OEmbedImplementation
+class Smugmug extends EndPoint implements EndPointInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getEndPoint()
-    {
-        return 'http://api.smugmug.com/services/oembed/';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getPatterns()
-    {
-        return ['http://www.smugmug.com/*'];
-    }
+    protected static $pattern = 'www.smugmug.com/*';
+    protected static $endPoint = 'http://api.smugmug.com/services/oembed/';
 }

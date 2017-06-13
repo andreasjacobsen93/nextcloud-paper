@@ -1,14 +1,31 @@
 <?php
-class SpotifyTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class SpotifyTest extends AbstractTestCase
 {
-    public function testOne()
+    public function testPlay()
     {
         $this->assertEmbed(
-            'http://open.spotify.com/track/7nDQMtLxu94xtlTR8bEqjU',
+            'https://play.spotify.com/album/7s66wU1XJ2NsUuWM2NKiUV',
             [
-                'title' => 'Zhu - Faded',
+                'title' => 'A Cantar con Xabarin (Vol. I & II)',
                 'type' => 'rich',
-                'code' => '<iframe src="https://embed.spotify.com/?uri=spotify:track:7nDQMtLxu94xtlTR8bEqjU" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>',
+                'code' => '<iframe src="https://open.spotify.com/embed/album/7s66wU1XJ2NsUuWM2NKiUV" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>',
+                'providerName' => 'Spotify',
+                'providerUrl' => 'https://www.spotify.com',
+            ]
+        );
+    }
+
+    public function testOpen()
+    {
+        $this->assertEmbed(
+            'https://open.spotify.com/album/7s66wU1XJ2NsUuWM2NKiUV',
+            [
+                'title' => 'A Cantar con Xabarin (Vol. I & II)',
+                'type' => 'rich',
+                'code' => '<iframe src="https://open.spotify.com/embed/album/7s66wU1XJ2NsUuWM2NKiUV" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>',
                 'providerName' => 'Spotify',
                 'providerUrl' => 'https://www.spotify.com',
             ]

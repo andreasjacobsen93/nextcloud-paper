@@ -1,16 +1,19 @@
 <?php
-class ChirbitTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class ChirbitTest extends AbstractTestCase
 {
     public function testOne()
     {
         $this->assertEmbed(
             'http://chirb.it/7A9L9B',
             [
-                'title' => 'Chirbit [nvanderklippe] Encana conference call',
-                'width' => 398,
+                'title' => 'Encana conference call',
+                'width' => 380,
                 'height' => 120,
-                'type' => 'rich',
-                'providerName' => 'Chirbit',
+                'type' => 'video',
+                'providerName' => 'chirbit',
             ]
         );
     }

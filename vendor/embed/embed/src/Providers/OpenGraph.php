@@ -1,39 +1,67 @@
 <?php
+
 namespace Embed\Providers;
 
+use Embed\Adapters\Adapter;
 use Embed\Utils;
 
 /**
- * Generic opengraph provider.
- *
- * Load the opengraph data of an url and store it
+ * Provider to get the data from the Open Graph elements in the HTML
  */
-class OpenGraph extends Provider implements ProviderInterface
+class OpenGraph extends Provider
 {
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function __construct(Adapter $adapter)
     {
-        if (!($html = $this->request->getHtmlContent())) {
-            return false;
+        parent::__construct($adapter);
+
+        if (!($html = $adapter->getResponse()->getHtmlContent())) {
+            return;
         }
 
-        foreach (Utils::getMetas($html) as $meta) {
-            list($name, $value) = $meta;
+        foreach ($html->getElementsByTagName('meta') as $meta) {
+            $name = trim(strtolower($meta->getAttribute('property')));
+            $value = $meta->getAttribute('content');
 
-            if (strpos($name, 'og:article:') === 0) {
-                $name = substr($name, 11);
-            } elseif (strpos($name, 'og:') === 0) {
-                $name = substr($name, 3);
-            } else {
+            if (empty($name)) {
+                $name = trim(strtolower($meta->getAttribute('name')));
+            }
+
+            if (empty($name) || empty($value)) {
                 continue;
             }
 
-            if ($name === 'image') {
-                $this->bag->add('images', $value);
-            } else {
-                $this->bag->set($name, $value);
+            if (strpos($name, 'og:') === 0) {
+                $name = substr($name, 3);
+            } elseif (
+                    strpos($name, 'article:') !== 0
+                 && strpos($name, 'image:') !== 0
+                 && strpos($name, 'video:') !== 0
+                 && strpos($name, 'book:') !== 0
+                 && strpos($name, 'music:') !== 0
+                 && strpos($name, 'profile:') !== 0
+            ) {
+                continue;
+            }
+
+
+            switch ($name) {
+                case 'image':
+                case 'image:url':
+                case 'image:secure_url':
+                    $this->bag->add('images', $value);
+                    break;
+
+                case 'article:tag':
+                case 'video:tag':
+                case 'book:tag':
+                    $this->bag->add('tags', $value);
+                    break;
+                
+                default:
+                    $this->bag->set($name, $value);
             }
         }
     }
@@ -86,30 +114,37 @@ class OpenGraph extends Provider implements ProviderInterface
      */
     public function getCode()
     {
-        if ($this->bag->has('video')) {
-            $video = $this->bag->get('video');
+        $names = ['video:secure_url', 'video:url', 'video'];
 
-            if (!($videoPath = parse_url($video, PHP_URL_PATH)) || !($type = pathinfo($videoPath, PATHINFO_EXTENSION))) {
-                $type = $this->bag->get('video:type');
-            }
+        foreach ($names as $name) {
+            if ($this->bag->has($name)) {
+                $video = $this->normalizeUrl($this->bag->get($name));
 
-            switch ($type) {
-                case 'swf':
-                case 'application/x-shockwave-flash':
-                    return Utils::flash($video, $this->getWidth(), $this->getHeight());
+                if (!($videoPath = parse_url($video, PHP_URL_PATH)) || !($type = pathinfo($videoPath, PATHINFO_EXTENSION))) {
+                    $type = $this->bag->get('video:type');
+                }
 
-                case 'mp4':
-                case 'ogg':
-                case 'ogv':
-                case 'webm':
-                case 'application/mp4':
-                case 'video/mp4':
-                case 'video/ogg':
-                case 'video/ogv':
-                case 'video/webm':
-                    $images = $this->getImagesUrls();
+                switch ($type) {
+                    case 'swf':
+                    case 'application/x-shockwave-flash':
+                        return Utils::flash($video, $this->getWidth(), $this->getHeight());
 
-                    return Utils::videoHtml(current($images), $video, $this->getWidth(), $this->getHeight());
+                    case 'mp4':
+                    case 'ogg':
+                    case 'ogv':
+                    case 'webm':
+                    case 'application/mp4':
+                    case 'video/mp4':
+                    case 'video/ogg':
+                    case 'video/ogv':
+                    case 'video/webm':
+                        $images = $this->getImagesUrls();
+
+                        return Utils::videoHtml(current($images), $video, $this->getWidth(), $this->getHeight());
+
+                    case 'text/html':
+                        return Utils::iframe($video, $this->getWidth(), $this->getHeight());
+                }
             }
         }
     }
@@ -119,7 +154,27 @@ class OpenGraph extends Provider implements ProviderInterface
      */
     public function getUrl()
     {
-        return $this->bag->get('url');
+        $url = $this->normalizeUrl($this->bag->get('url'));
+
+        if ($url !== $this->adapter->getResponse()->getUrl()->getAbsolute('/')) {
+            return $url;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags()
+    {
+        return (array) $this->bag->get('tags') ?: [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthorName()
+    {
+        return $this->bag->get('article:author') ?: $this->bag->get('book:author');
     }
 
     /**
@@ -135,7 +190,7 @@ class OpenGraph extends Provider implements ProviderInterface
      */
     public function getImagesUrls()
     {
-        return (array) $this->bag->get('images') ?: [];
+        return $this->normalizeUrls($this->bag->get('images'));
     }
 
     /**
@@ -159,6 +214,17 @@ class OpenGraph extends Provider implements ProviderInterface
      */
     public function getPublishedTime()
     {
-        return $this->bag->get('published_time') ?: $this->bag->get('updated_time');
+        return $this->bag->get('article:published_time')
+            ?: $this->bag->get('article:modified_time')
+            ?: $this->bag->get('video:release_date')
+            ?: $this->bag->get('music:release_date');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProviderUrl()
+    {
+        return $this->bag->get('website');
     }
 }
