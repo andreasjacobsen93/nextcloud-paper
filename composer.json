@@ -1,6 +1,5 @@
 {
   "require": {
-    "scotteh/php-goose": "0.5.0",
     "embed/embed": "2.5.1"
   }
 }
