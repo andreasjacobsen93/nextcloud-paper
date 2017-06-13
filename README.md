@@ -18,3 +18,4 @@ A NextCloud app that turns web content into easily readable and simplified artic
 * Images
 * YouTube videos
 * Download to pdf or markdown
+* Text highlighting
