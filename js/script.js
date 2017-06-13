@@ -82,7 +82,7 @@ $(document).ready(function () {
             }).done(function (paper) {
                 self._papers.push(paper);
                 self._activePaper = paper;
-                self.load(paper.id); 
+                self.load(paper.id);
                 deferred.resolve();
             }).fail(function () {
                 deferred.reject();
