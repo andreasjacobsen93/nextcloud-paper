@@ -2,8 +2,10 @@
 namespace OCA\Paper\Controller;
 
 use OCP\IRequest;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
 
 class PageController extends Controller {
@@ -25,7 +27,20 @@ class PageController extends Controller {
 	 * @NoCSRFRequired
 	 */
 	public function index() {
-		return new TemplateResponse('paper', 'index');  // templates/list.php
+        $response =  new TemplateResponse('paper', 'index');  // templates/list.php
+
+        $csp = new ContentSecurityPolicy();
+        $csp->addAllowedImageDomain('*')
+            ->addAllowedMediaDomain('*')
+            ->addAllowedConnectDomain('*')  // chrome breaks on audio elements
+            ->addAllowedFrameDomain('https://youtube.com')
+            ->addAllowedFrameDomain('https://www.youtube.com')
+            ->addAllowedFrameDomain('https://player.vimeo.com')
+            ->addAllowedFrameDomain('https://www.player.vimeo.com')
+            ->addAllowedFrameDomain('https://vk.com')
+            ->addAllowedFrameDomain('https://www.vk.com');
+        $response->setContentSecurityPolicy($csp);
+        return $response;
 	}
 
 }

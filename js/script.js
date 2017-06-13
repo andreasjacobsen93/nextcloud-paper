@@ -80,7 +80,6 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(paper)
             }).done(function (paper) {
-                //self.loadAll();
                 self._papers.push(paper);
                 self._activePaper = paper;
                 self.load(paper.id);
