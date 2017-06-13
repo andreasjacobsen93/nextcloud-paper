@@ -18,6 +18,7 @@ use OCA\Paper\Db\PaperMapper;
 
 use Embed\Embed;
 use Readability;
+use Goose\Client as GooseClient;
 
 class PaperService
 {
@@ -53,29 +54,56 @@ class PaperService
         }
     }
 
-    public function create($url, $userid) {
-        $paper = new Paper();
+    private function getEmbed($url)
+    {
+        return Embed::create($url);
+    }
 
-        $info = Embed::create($url);
-
+    private function getReadability($url)
+    {
         $doc = new Readability();
         $doc->input($url);
         $doc->init();
 
-        $title = $doc->articleTitle->innerHTML;
-        $content = $doc->articleContent->innerHTML;
+        return $doc;
+    }
+
+    private function getGoose($url)
+    {
+        $goose = new GooseClient();
+        return $goose->extractContent($url);
+    }
+
+    public function create($url, $userid) {
+        $paper = new Paper();
+
+        //$embed = $this->getEmbed($url);
+        //$readability = $this->getReadability($url);
+        $goose = $this->getGoose($url);
+
+        $title = $goose->getTitle();
+        $description = $goose->getMetaDescription();
+        $site = $goose->getCanonicalLink();
+        $link = $url;
+        $author = '';
+        $published = '';
+        $readtime = '';
+        $content = $goose->getCleanedArticleText();
+        $image = $goose->getTopImage();
+        $datetime = '';
 
         $paper->setTitle(substr($title,0,200));
-        $paper->setDescription(substr($info->description,0,200));
-        $paper->setSite(substr($info->providerUrl,0,200));
-        $paper->setLink(substr($info->url,0,200));
-        $paper->setAuthor(substr($info->authorName,0,200));
-        $paper->setPublished($info->publishedDate);
-        $paper->setReadtime('');
+        $paper->setDescription(substr($description,0,200));
+        $paper->setSite(substr($site,0,200));
+        $paper->setLink(substr($link,0,200));
+        $paper->setAuthor(substr($author,0,200));
+        $paper->setPublished($published);
+        $paper->setReadtime($readtime);
         $paper->setContent($content);
-        $paper->setImage($info->image);
-        $paper->setDatetime('');
+        $paper->setImage($image);
+        $paper->setDatetime($datetime);
         $paper->setUserId($userid);
+
         return $this->mapper->insert($paper);
     }
 

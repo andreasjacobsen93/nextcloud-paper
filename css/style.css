@@ -87,7 +87,8 @@
 	-moz-font-feature-settings: "liga" on;
 }
 
-.app-content-detail img, .app-content-detail table {
+.app-content-detail img, .app-content-detail table,
+.app-content-detail tr {
 	max-width: 100%;
 }
 
