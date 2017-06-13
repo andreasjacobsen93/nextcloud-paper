@@ -1,0 +1,3 @@
+[submodule "lib/Readability"]
+	path = lib/Readability
+	url = https://github.com/andreasjacobsen93/php-readability.git
