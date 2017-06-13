@@ -18,7 +18,7 @@ use OCA\Paper\Db\PaperMapper;
 
 use Embed\Embed;
 use Readability;
-use Goose\Client as GooseClient;
+use andreskrey\Readability\HTMLParser;
 
 class PaperService
 {
@@ -68,28 +68,30 @@ class PaperService
         return $doc;
     }
 
-    private function getGoose($url)
+    private function getParser($url)
     {
-        $goose = new GooseClient();
-        return $goose->extractContent($url);
+        $parser = new HTMLParser();
+        $html = file_get_contents($url);
+        $doc = $parser->parse($html);
+
+        return $doc;
     }
 
     public function create($url, $userid) {
         $paper = new Paper();
 
         //$embed = $this->getEmbed($url);
-        //$readability = $this->getReadability($url);
-        $goose = $this->getGoose($url);
+        $parser = $this->getParser($url);
 
-        $title = $goose->getTitle();
-        $description = $goose->getMetaDescription();
-        $site = $goose->getCanonicalLink();
+        $title = $parser['title'];
+        $description = '';
+        $site = '';
         $link = $url;
-        $author = '';
+        $author = $parser['author'];
         $published = '';
         $readtime = '';
-        $content = $goose->getCleanedArticleText();
-        $image = $goose->getTopImage();
+        $content = $parser['article'];
+        $image = $parser['image'];
         $datetime = '';
 
         $paper->setTitle(substr($title,0,200));
