@@ -1,5 +1,8 @@
 <?php
-class UstreamTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class UstreamTest extends AbstractTestCase
 {
     public function testOne()
     {
@@ -11,7 +14,6 @@ class UstreamTest extends TestCaseBase
                 'imageHeight' => 90,
                 'type' => 'video',
                 'authorName' => 'redsh0es',
-                'authorUrl' => 'http://www.ustream.tv/user/redsh0es',
                 'providerName' => 'Ustream',
                 'providerUrl' => 'http://www.ustream.tv/',
             ]

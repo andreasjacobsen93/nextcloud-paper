@@ -1,20 +1,21 @@
 <?php
-/**
- * Adapter to get more info from parleys.com
- */
+
 namespace Embed\Adapters;
 
-use Embed\Request;
+use Embed\Http\Response;
 
-class Parleys extends Webpage implements AdapterInterface
+/**
+ * Adapter to get more info from parleys.com.
+ */
+class Parleys extends Webpage
 {
     /**
      * {@inheritdoc}
      */
-    public static function check(Request $request)
+    public static function check(Response $response)
     {
-        return $request->isValid() && $request->match([
-            '*://www.parleys.com/play/*',
+        return $response->isValid() && $response->getUrl()->match([
+            'www.parleys.com/play/*',
         ]);
     }
 
@@ -23,9 +24,25 @@ class Parleys extends Webpage implements AdapterInterface
      */
     public function getCode()
     {
-        $id = $this->request->getDirectoryPosition(1);
+        $id = $this->getResponse()->getUrl()->getDirectoryPosition(1);
 
-        return '<div data-parleys-presentation="'.$id.'" style="width:100%;height:300px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script></div>';
+        return '<div data-parleys-presentation="'.$id.'" style="width:'.$this->width.';height:'.$this->height.'px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script></div>';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getWidth()
+    {
+        return '100%';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHeight()
+    {
+        return 300;
     }
 
     /**

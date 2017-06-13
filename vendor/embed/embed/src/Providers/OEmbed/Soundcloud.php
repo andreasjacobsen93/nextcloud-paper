@@ -1,21 +1,9 @@
 <?php
+
 namespace Embed\Providers\OEmbed;
 
-class Soundcloud extends OEmbedImplementation
+class Soundcloud extends EndPoint implements EndPointInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getEndPoint()
-    {
-        return 'http://soundcloud.com/oembed';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getPatterns()
-    {
-        return ['https?://soundcloud.com/*'];
-    }
+    protected static $pattern = 'soundcloud.com/*';
+    protected static $endPoint = 'http://soundcloud.com/oembed';
 }

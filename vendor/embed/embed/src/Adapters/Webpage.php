@@ -1,32 +1,27 @@
 <?php
-/**
- * Adapter to provide all information from any webpage
- */
+
 namespace Embed\Adapters;
 
-use Embed\Request;
 use Embed\Providers;
 
-class Webpage extends Adapter implements AdapterInterface
+/**
+ * Adapter to provide all information from any webpage.
+ */
+class Webpage extends Adapter
 {
     /**
      * {@inheritdoc}
      */
-    public static function check(Request $request)
+    protected function init()
     {
-        return $request->isValid();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function run()
-    {
-        $this->addProvider('oembed', new Providers\OEmbed());
-        $this->addProvider('opengraph', new Providers\OpenGraph());
-        $this->addProvider('twittercards', new Providers\TwitterCards());
-        $this->addProvider('dcterms', new Providers\Dcterms());
-        $this->addProvider('sailthru', new Providers\Sailthru());
-        $this->addProvider('html', new Providers\Html());
+        $this->providers = [
+            'oembed' => new Providers\OEmbed($this),
+            'opengraph' => new Providers\OpenGraph($this),
+            'linkpulse' => new Providers\Linkpulse($this),
+            'twittercards' => new Providers\TwitterCards($this),
+            'dcterms' => new Providers\Dcterms($this),
+            'sailthru' => new Providers\Sailthru($this),
+            'html' => new Providers\Html($this),
+        ];
     }
 }

@@ -1,21 +1,23 @@
 <?php
+
 namespace Embed\Providers\OEmbed;
 
-class Spotify extends OEmbedImplementation
+use Embed\Http\Url;
+
+class Spotify extends EndPoint implements EndPointInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getEndPoint()
-    {
-        return 'https://embed.spotify.com/oembed';
-    }
+    protected static $pattern = '*.spotify.com/*';
+    protected static $endPoint = 'https://embed.spotify.com/oembed';
 
     /**
      * {@inheritdoc}
      */
-    public static function getPatterns()
+    public function getEndPoint()
     {
-        return ['https?://*.spotify.com/*'];
+        return Url::create(static::$endPoint)
+                ->withQueryParameters([
+                    'url' => (string) $this->response->getUrl()->withQueryParameters([]),
+                    'format' => 'json'
+                ]);
     }
 }

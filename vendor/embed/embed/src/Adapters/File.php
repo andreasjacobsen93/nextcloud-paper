@@ -1,14 +1,15 @@
 <?php
-/**
- * Adapter to provide information from raw files
- */
+
 namespace Embed\Adapters;
 
-use Embed\Request;
+use Embed\Http\Response;
 use Embed\Utils;
 use Embed\Providers;
 
-class File extends Adapter implements AdapterInterface
+/**
+ * Adapter to provide information from raw files.
+ */
+class File extends Adapter
 {
     private static $contentTypes = [
         'video/ogg' => ['video', 'videoHtml'],
@@ -21,6 +22,7 @@ class File extends Adapter implements AdapterInterface
         'audio/mpeg' => ['audio', 'audioHtml'],
         'audio/webm' => ['audio', 'audioHtml'],
         'image/jpeg' => ['photo', 'imageHtml'],
+        'image/jpg' => ['photo', 'imageHtml'],
         'image/gif' => ['photo', 'imageHtml'],
         'image/png' => ['photo', 'imageHtml'],
         'image/bmp' => ['photo', 'imageHtml'],
@@ -38,17 +40,19 @@ class File extends Adapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public static function check(Request $request)
+    public static function check(Response $response)
     {
-        return $request->isValid() && isset(self::$contentTypes[$request->getMimeType()]);
+        return $response->isValid() && isset(self::$contentTypes[$response->getContentType()]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function run()
+    protected function init()
     {
-        $this->addProvider('oembed', new Providers\OEmbed());
+        $this->providers = [
+            'oembed' => new Providers\OEmbed($this),
+        ];
     }
 
     /**
@@ -56,7 +60,7 @@ class File extends Adapter implements AdapterInterface
      */
     public function getType()
     {
-        return self::$contentTypes[$this->request->getMimeType()][0];
+        return self::$contentTypes[$this->getResponse()->getContentType()][0];
     }
 
     /**
@@ -68,15 +72,15 @@ class File extends Adapter implements AdapterInterface
             return $code;
         }
 
-        switch (self::$contentTypes[$this->request->getMimeType()][1]) {
+        switch (self::$contentTypes[$this->getResponse()->getContentType()][1]) {
             case 'videoHtml':
-                return Utils::videoHtml($this->getImage(), $this->getUrl(), $this->getWidth(), $this->getHeight());
+                return Utils::videoHtml($this->image, $this->url, $this->imageWidth, $this->imageHeight);
 
             case 'audioHtml':
-                return Utils::audioHtml($this->getUrl());
+                return Utils::audioHtml($this->url);
 
             case 'google':
-                return Utils::google($this->getUrl());
+                return Utils::google($this->url);
         }
     }
 
@@ -85,13 +89,8 @@ class File extends Adapter implements AdapterInterface
      */
     public function getImagesUrls()
     {
-        if ($this->getType() === 'photo') {
-            return [
-                [
-                    'value' => $this->getUrl(),
-                    'providers' => ['adapter'],
-                ],
-            ];
+        if ($this->type === 'photo') {
+            return [$this->url];
         }
 
         return [];

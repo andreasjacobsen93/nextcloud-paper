@@ -1,20 +1,20 @@
 <?php
-class ImagesBlacklistTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class ImagesBlacklistTest extends AbstractTestCase
 {
     public function testPlainText()
     {
         $this->assertEmbed(
-            'https://github.com/oscarotero/Embed',
+            'https://alistapart.com/article/the-rich-typefaces-get-richer',
             [
-                'image' => 'https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif',
-            ], [
-                'adapter' => [
-                    'config' => [
-                        'imagesBlacklist' => [
-                            'https://avatars1.githubusercontent.com/u/377873?v=3&s=400',
-                        ],
-                    ],
-                ]
+                'image' => 'https://alistapart.com/d/_made/pix/authors/photos/shoaf-headshot_120_120_c1.jpg',
+            ],
+            [
+                'images_blacklist' => [
+                    'alistapart.com/components/assets/img/ala-logo-big.png',
+                ],
             ]
         );
     }
@@ -22,17 +22,14 @@ class ImagesBlacklistTest extends TestCaseBase
     public function testPlainUrlMatch()
     {
         $this->assertEmbed(
-            'https://github.com/oscarotero/Embed',
+            'https://alistapart.com/article/the-rich-typefaces-get-richer',
             [
-                'image' => 'https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif',
-            ], [
-                'adapter' => [
-                    'config' => [
-                        'imagesBlacklist' => [
-                            '*.githubusercontent.com*',
-                        ],
-                    ],
-                ]
+                'image' => 'https://alistapart.com/d/_made/pix/authors/photos/shoaf-headshot_120_120_c1.jpg',
+            ],
+            [
+                'images_blacklist' => [
+                    '*-logo-*',
+                ],
             ]
         );
     }
@@ -40,17 +37,14 @@ class ImagesBlacklistTest extends TestCaseBase
     public function testAuthorizedImage()
     {
         $this->assertEmbed(
-            'https://github.com/oscarotero/Embed',
+            'https://alistapart.com/article/the-rich-typefaces-get-richer',
             [
-                'image' => 'https://avatars1.githubusercontent.com/u/377873?v=3&s=400',
-            ], [
-                'adapter' => [
-                    'config' => [
-                        'imagesBlacklist' => [
-                            '*/octocat-spinner-*',
-                        ],
-                    ],
-                ]
+                'image' => 'https://alistapart.com/components/assets/img/ala-logo-big.png',
+            ],
+            [
+                'images_blacklist' => [
+                    '*/photos/*',
+                ],
             ]
         );
     }

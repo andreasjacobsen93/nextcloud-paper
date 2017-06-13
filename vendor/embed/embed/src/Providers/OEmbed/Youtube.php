@@ -1,23 +1,9 @@
 <?php
+
 namespace Embed\Providers\OEmbed;
 
-class Youtube extends OEmbedImplementation
+class Youtube extends EndPoint implements EndPointInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getEndPoint()
-    {
-        return 'http://www.youtube.com/oembed';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getPatterns()
-    {
-        return [
-            'https?://*youtube.*',
-        ];
-    }
+    protected static $pattern = '*youtube.*';
+    protected static $endPoint = 'http://www.youtube.com/oembed';
 }
