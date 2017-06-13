@@ -1,5 +1,8 @@
 <?php
-class WordPressTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class WordPressTest extends AbstractTestCase
 {
     public function testOne()
     {
@@ -9,9 +12,6 @@ class WordPressTest extends TestCaseBase
                 'title' => 'Dave Ross: Optimize Image Files Like a Pro',
                 'imageWidth' => 400,
                 'imageHeight' => 224,
-                'type' => 'video',
-                'authorName' => '@WordPressTV',
-                'providerName' => 'WordPress.tv',
                 'providerUrl' => 'http://wordpress.tv',
             ]
         );

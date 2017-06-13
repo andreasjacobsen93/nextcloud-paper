@@ -1,35 +1,22 @@
 <?php
-/**
- * Adapter to provide information from wikipedia
- */
+
 namespace Embed\Adapters;
 
-use Embed\Request;
-use Embed\Providers;
+use Embed\Http\Response;
 
-class Youtube extends Webpage implements AdapterInterface
+/**
+ * Adapter to provide information from youtube.
+ * Required when youtube returns a 429 status code.
+ */
+class Youtube extends Webpage
 {
     /**
      * {@inheritdoc}
      */
-    public static function check(Request $request)
+    public static function check(Response $response)
     {
-        return $request->isValid([200, 429]) && $request->match([
-            'https?://*.youtube.*',
+        return $response->isValid([200, 429]) && $response->getUrl()->match([
+            '*.youtube.*',
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function run()
-    {
-        if ($this->request->getHttpCode() === 429) {
-            $this->addProvider('oembed', new Providers\OEmbed());
-
-            return;
-        }
-
-        parent::run();
     }
 }

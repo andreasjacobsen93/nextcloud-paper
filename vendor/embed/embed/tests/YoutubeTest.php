@@ -1,5 +1,8 @@
 <?php
-class YoutubeTest extends TestCaseBase
+
+namespace Embed\Tests;
+
+class YoutubeTest extends AbstractTestCase
 {
     public function testOne()
     {
@@ -14,6 +17,63 @@ class YoutubeTest extends TestCaseBase
                 'authorUrl' => 'https://www.youtube.com/user/smshdchrb',
                 'providerName' => 'YouTube',
                 'providerUrl' => 'https://www.youtube.com/',
+                'tags' => [
+                    'kittens',
+                    'cats',
+                    'hungry',
+                    'cat',
+                    'baby',
+                    'eight',
+                    'weeks',
+                    'old',
+                    'noisy',
+                    'meow',
+                    'funny',
+                    'kitties',
+                    'feline',
+                    'dinner',
+                    'excited',
+                    'loud',
+                    'cute',
+                    'pet',
+                    'food',
+                    'time',
+                    'felix',
+                    'kitty',
+                    'catz',
+                    'lolcat',
+                    'kitten',
+                    'talking',
+                    'adorable',
+                    'climbing',
+                    'feeding',
+                    'demanding',
+                    'fostered',
+                    'foster',
+                    'tabby',
+                    'blue',
+                    'tails',
+                    'waiting',
+                    'feed',
+                    'crying',
+                    'yelling',
+                    'flu',
+                    'ears',
+                    'funny cats',
+                    'funny kittens',
+                    'cat meme',
+                    'grumpy cat',
+                    'Cat (Fictional Character)',
+                    'Feline (Musical Album)',
+                    'Pet (Website Category)',
+                    'Feline (album)',
+                    'Cat (TV Character)',
+                    'noms',
+                    'lol',
+                    'funnycats',
+                    'catsofyoutube',
+                    'l...',
+                ],
             ]
         );
     }
