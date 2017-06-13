@@ -86,6 +86,9 @@ class PaperService
         $image = $embed->image;
         $datetime = '';
 
+        if ($embed->type == 'video')
+            $content = $embed->code . '<br>' . $content;
+
         $paper->setTitle(substr($title,0,200));
         $paper->setDescription(substr($description,0,200));
         $paper->setSite(substr($site,0,200));
