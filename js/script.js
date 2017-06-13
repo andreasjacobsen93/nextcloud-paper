@@ -10,8 +10,6 @@ $(document).ready(function () {
         this._activePaper = undefined;
     };
 
-    var creating = false;
-
     Papers.prototype = {
         load: function (id) {
             var self = this;
@@ -74,10 +72,6 @@ $(document).ready(function () {
             return deferred.promise();
         },
         create: function (paper) {
-            if (creating)
-                return;
-
-            creating = true;
             var deferred = $.Deferred();
             var self = this;
             $.ajax({
@@ -86,15 +80,14 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(paper)
             }).done(function (paper) {
-                self.loadAll();
+                //self.loadAll();
                 self._papers.push(paper);
                 self._activePaper = paper;
+                self.load(paper.id);
                 deferred.resolve();
             }).fail(function () {
                 deferred.reject();
             });
-
-            creating = false;
             return deferred.promise();
         },
         updateActive: function (title, description) {
@@ -154,13 +147,7 @@ $(document).ready(function () {
         },
         renderNavigation: function () {
             var self = this;
-            var clicked = false;
             $('#add_button').click(function () {
-                if (clicked)
-                    return;
-
-                clicked = true;
-
                 var url_field = $('#add_url');
 
                 if (url_field.val() === '')
