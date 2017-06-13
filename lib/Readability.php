@@ -107,10 +107,10 @@ class Readability
 	    return $data;
     }
 
-	function input($url=null)
+	function input($html)
 	{
-		if(empty($url)) return false;
-		$html = $this->_get_curl($url);
+		if(empty($html)) return false;
+		//$html = $this->_get_curl($url);
 		preg_match("/charset=([\w|\-]+);?/", $html, $match);
 		$charset = isset($match[1]) ? $match[1] : 'UTF-8';
 
