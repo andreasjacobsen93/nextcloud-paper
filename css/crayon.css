@@ -11,6 +11,7 @@
 }
 
 .crayon-nums {
+    visibility: hidden;
     background: #dfefff !important;
     color: #5499de !important;
 }
@@ -35,7 +36,7 @@
     padding: 0 5px;
 }
 
-.crayon-syntax div {
+.crayon-syntax p, .crayon-syntax div {
     background: 0;
     border: 0;
     padding: 0;
