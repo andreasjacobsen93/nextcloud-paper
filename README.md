@@ -14,6 +14,7 @@ A NextCloud app that turns web content into easily readable and simplified artic
 
 ### Planned
 * Bookmarklet
+* Tags
 * Images
 * YouTube videos
 * Download to pdf or markdown
