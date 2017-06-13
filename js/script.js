@@ -162,10 +162,13 @@ $(document).ready(function () {
                 clicked = true;
 
                 var url_field = $('#add_url');
+
+                if (url_field.val() === '')
+                    return;
+
                 var paper = {
                     url: url_field.val()
                 };
-
                 url_field.val('');
 
                 self._papers.create(paper).done(function() {
