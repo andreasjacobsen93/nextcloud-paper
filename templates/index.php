@@ -2,6 +2,7 @@
 script('paper', '3rdparty/jsrender');
 script('paper', 'script');
 style('paper', 'style');
+style('paper', 'crayon');
 
 ?>
 <div id="app">
