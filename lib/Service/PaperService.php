@@ -73,7 +73,7 @@ class PaperService
         $embed = $this->getEmbed($url);
         $response = $embed->getResponse();
 
-        $readability = $this->getReadability($response->getHtmlContent());
+        $readability = $this->getReadability($response->getHtmlContent()->saveHTML());
 
         $title = $readability->articleTitle->innerHTML;
         $description = $embed->description;
