@@ -37,6 +37,7 @@
 }
 
 .crayon-syntax p, .crayon-syntax div {
+    font-family: Monaco, 'MonacoRegular', 'Courier New', monospace !important;
     background: 0;
     border: 0;
     padding: 0;
