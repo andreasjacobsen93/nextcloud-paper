@@ -80,7 +80,7 @@ class PaperService
     public function create($url, $userid) {
         $paper = new Paper();
 
-        //$embed = $this->getEmbed($url);
+        $embed = $this->getEmbed($url);
         $parser = $this->getParser($url);
 
         $title = $parser['title'];
@@ -90,7 +90,7 @@ class PaperService
         $author = $parser['author'];
         $published = '';
         $readtime = '';
-        $content = $parser['article'];
+        $content = $parser['html'];
         $image = $parser['image'];
         $datetime = '';
 
