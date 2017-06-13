@@ -73,14 +73,14 @@ class PaperService
         $embed = $this->getEmbed($url);
         $readability = $this->getReadability($url);
 
-        $title = $readability->articleTitle;
+        $title = $readability->articleTitle->innerHTML;
         $description = $embed->description;
         $site = $embed->providerUrl;
         $link = $url;
         $author = $embed->authorName;
         $published = $embed->publishedDate;
         $readtime = '';
-        $content = $readability->articleContent;
+        $content = $readability->articleContent->innerHTML;
         $image = $embed->image;
         $datetime = '';
 
