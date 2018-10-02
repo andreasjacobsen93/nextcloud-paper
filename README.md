@@ -1,7 +1,8 @@
 # Paper
 A NextCloud app that turns web content into easily readable and simplified articles. (Instapaper clone)
 
-**Note: This is deprecated, and will be rewritten using javascript! Please do not use.**
+**Note: This is deprecated.**
+This app will be rewritten to NC14 sometime.
 
 ![](https://github.com/andreasjacobsen93/Paper/raw/master/screenshot.PNG)
 
