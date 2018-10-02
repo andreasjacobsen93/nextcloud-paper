@@ -9,11 +9,12 @@ This app will be rewritten to NC14 sometime.
 ## Features
 
 ### Current
+The current version is deprecated and has not been updated for a long time.
+
+### Planned
 * Add link on web interface
 * Converts webpage to clean article
 * Converts relative links to absolute links
-
-### Planned
 * Bookmarklet
 * Tags
 * Images
